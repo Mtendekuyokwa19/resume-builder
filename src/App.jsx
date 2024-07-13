@@ -21,10 +21,10 @@ function Content() {
 function Nav() {
 
   return(
-    <nav className="flex h-9 bg-neutral-500 p-2 justify-around gap-20">
+    <nav className="flex h-9 bg-gray-light justify-around gap-20 p-8">
 
 
-        <h1>Resume Builder</h1>
+        <h1 className="text-xl font-bold text-fontGray">Resume Builder</h1>
 
       <section className="flex gap-9">
       <li>
