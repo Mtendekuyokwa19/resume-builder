@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Education, Experience, PersonalDataIcon, Skills } from "./svg"
 import { v4 as uuid } from 'uuid';
 export function FormTabs() {
@@ -6,6 +7,7 @@ export function FormTabs() {
     <div className="flex flex-col gap-3 w-1/2 h-2/3 bg-red-400 p-6">
       <TabCarousel/>
       <FormBody/>
+      <CarouselButtons/>
     </div>
   )
 
@@ -62,6 +64,20 @@ function Line(){
   )
 }
 
+function CarouselButtons() {
+  return(
+   <section className="flex justify-between m-8 ">
+    <button className="p-3 bg-buttonColor text-gray-light w-24 rounded-md">
+     Prev
+      </button>
+
+      <button className="p-3 bg-buttonColor text-gray-light w-24 rounded-md">
+        Next
+      </button>
+   </section>
+  )
+
+}
 function PersonalDataForm() {
 
   return(
@@ -72,7 +88,7 @@ function PersonalDataForm() {
         </div>
         <form action="" method="post" className="flex flex-col gap-4">
 
-            <section className="flex gap-4">
+            <section className="flex justify-between">
 
                 <div className="formElement">
                   <label htmlFor="Name">Fullname:</label>
@@ -86,7 +102,7 @@ function PersonalDataForm() {
                 </div>
 
             </section>
-            <section className="flex gap-4">
+            <section className="flex justify-between">
               <div className="formElement">
                   <label htmlFor="PhoneNumber">Phone Number:</label>
                   <input type="tel" id="PhoneNumber" placeholder="+2654567891011" />

@@ -14,6 +14,7 @@ module.exports = {
       "gray-light": "#d3dce6",
       fontGray: "#19114a",
       textGrey: "#6f6c8f",
+      buttonColor: "#175bb5",
     },
     extend: {},
   },
