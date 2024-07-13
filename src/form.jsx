@@ -67,11 +67,11 @@ function Line(){
 function CarouselButtons() {
   return(
    <section className="flex justify-between m-8 ">
-    <button className="p-3 bg-buttonColor text-gray-light w-24 rounded-md">
+    <button className="p-3 text-gray-light w-24 rounded-md carouselBtnPrev">
      Prev
       </button>
 
-      <button className="p-3 bg-buttonColor text-gray-light w-24 rounded-md">
+      <button className="p-3 bg-buttonColor text-gray-light w-24 rounded-md carouselBtnNext">
         Next
       </button>
    </section>
@@ -91,28 +91,62 @@ function PersonalDataForm() {
             <section className="flex justify-between">
 
                 <div className="formElement">
-                  <label htmlFor="Name">Fullname:</label>
+                  <label htmlFor="Name" className="text-fontGray">Fullname:</label>
                   <input type="text" id="Name" placeholder="Joseph Ubuntu" />
                 </div>
 
 
                 <div className="formElement">
-                  <label htmlFor="email">Email:</label>
+                  <label htmlFor="email" className="text-fontGray">Email:</label>
                   <input type="email" id="email" placeholder="example@linux.org"/>
                 </div>
 
             </section>
             <section className="flex justify-between">
               <div className="formElement">
-                  <label htmlFor="PhoneNumber">Phone Number:</label>
+                  <label htmlFor="PhoneNumber" className="text-fontGray">Phone Number:</label>
                   <input type="tel" id="PhoneNumber" placeholder="+2654567891011" />
               </div>
               <div className="formElement">
-                  <label htmlFor="JobTitle">Job Title:</label>
+                  <label htmlFor="JobTitle" className="text-fontGray">Job Title:</label>
                   <input type="text" id="JobTitle" placeholder="Product Designer"/>
               </div>
 
             </section>
+
+
+        </form>
+
+      </section>
+  )
+
+}
+
+function EducationForm() {
+
+  return(
+      <section className="flex flex-col gap-3 m-8 ">
+        <div className="flex flex-col gap-1">
+           <h1 className="text-fontGray text-xl ">Education</h1>
+           <p className="text-textGrey">Please fill in your history</p>
+        </div>
+        <form action="" method="post" className="flex flex-col gap-4">
+
+            <section className="flex justify-between">
+
+                <div className="formElement">
+                  <label htmlFor="Name" className="text-fontGray">School:</label>
+                  <input type="text" id="Name" placeholder="Mombera University" />
+                </div>
+
+
+                <div className="formElement">
+                  <label htmlFor="email" className="text-fontGray">Email:</label>
+                  <input type="email" id="email" placeholder="example@linux.org"/>
+                </div>
+
+            </section>
+
 
 
         </form>

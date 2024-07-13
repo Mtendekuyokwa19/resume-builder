@@ -15,3 +15,41 @@ li{
   }
 
 }
+
+.carouselBtnPrev{
+  transition: background-color 200ms ease-in-out;
+  transition-property: color;
+  color: black;
+  outline: solid;
+  outline-color: #d3dce6;
+  outline-width: 3px;
+
+}
+
+.carouselBtnPrev:hover{
+  background-color: #175bb5;
+  color: #d3dce6;
+  outline: none;
+
+}
+
+.carouselBtnNext {
+  background-color: none;
+  transition: background-color 200ms ease-in-out;
+  transition-property: color;
+
+
+
+}
+
+.carouselBtnNext:hover {
+  background-color: white;
+  outline-color: #d3dce6;
+  outline-width: 3px;
+  outline: solid;
+  color: black;
+    outline: solid;
+    outline-color: #d3dce6;
+    outline-width: 3px;
+
+}
