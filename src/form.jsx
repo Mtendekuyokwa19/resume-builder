@@ -14,10 +14,10 @@ export function FormTabs() {
 }
 
 function FormBody() {
-  const Forms=[<PersonalDataForm/>,<EducationForm/>,<ExperienceForm/>]
+  const Forms=[<PersonalDataForm/>,<EducationForm/>,<ExperienceForm/>,<SkillsForm/>]
   return(
     <div className="">
-      {Forms[2]}
+      {Forms[3]}
     </div>
   )
 }
@@ -216,6 +216,41 @@ function ExperienceForm() {
             Desciption:
           </label>
           <textarea name="Desciption" id="Desciption"></textarea>
+        </section>
+      </form>
+    </section>
+  );
+}
+
+function SkillsForm() {
+
+
+  return (
+    <section className="flex flex-col gap-3 m-8 ">
+      <section className="flex flex-col gap-1">
+        <div className="flex justify-between">
+          <h1 className="text-fontGray text-xl ">Tools and Technologies</h1>
+        </div>
+
+        <p className="text-textGrey">
+          Please Add a technology you are familiar with
+        </p>
+      </section>
+      <form action="" method="" className="flex flex-col gap-4">
+        <section className="flex justify-between">
+          <div className="formElement">
+            <label htmlFor="Name" className="text-fontGray">
+              Technology:
+            </label>
+            <input type="text" id="Name" placeholder="NodeJS" />
+
+            <button
+              title="Add Skills"
+              className="bg-gray-light rounded-md my-6 p-3 flex justify-center gap-1 items-center submitSkill"
+            >
+              <Add /> <p>Submit</p>
+            </button>
+          </div>
         </section>
       </form>
     </section>

@@ -25,8 +25,12 @@ li{
   outline-width: 3px;
 
 }
+.submitSkill{
+  transition: background-color 200ms ease-in-out;
+  transition-property: color;
+}
 
-.carouselBtnPrev:hover{
+.carouselBtnPrev:hover,.submitSkill:hover{
   background-color: #175bb5;
   color: #d3dce6;
   outline: none;
