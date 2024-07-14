@@ -1,25 +1,37 @@
 import { Fragment } from "react";
 import { Add, Education, Experience, PersonalDataIcon, Skills } from "./svg"
 import { v4 as uuid } from 'uuid';
+import { useState } from "react";
 export function FormTabs() {
 
   return(
     <div className="flex flex-col gap-3 w-1/2 h-2/3 bg-red-400 p-6">
       <TabCarousel/>
       <FormBody/>
-      <CarouselButtons/>
+
     </div>
   )
 
 }
 
 function FormBody() {
+  const [position, setposition] = useState(0);
+  function moveLeft() {
+
+    return position === 0 ? setposition(3) : setposition(position - 1);
+
+  }
+
+  function moveRight() {
+     return position===3?setposition(0):setposition(position + 1);
+  }
   const Forms=[<PersonalDataForm/>,<EducationForm/>,<ExperienceForm/>,<SkillsForm/>]
-  return(
-    <div className="">
-      {Forms[3]}
+  return (
+    <div>
+      {Forms[position]}
+      <CarouselButtons moveLeft={()=>moveLeft()} moveRight={()=>moveRight()} index={position} />
     </div>
-  )
+  );
 }
 
 function TabCarousel(){
@@ -64,19 +76,24 @@ function Line(){
   )
 }
 
-function CarouselButtons() {
-  return(
-   <section className="flex justify-between m-8 ">
-    <button className="p-3 text-gray-light w-24 rounded-md carouselBtnPrev">
-     Prev
+function CarouselButtons({ moveLeft, moveRight, index }) {
+  return (
+    <section className="flex justify-between m-8 ">
+      <button
+        className="p-3 text-gray-light w-24 rounded-md carouselBtnPrev"
+        onClick={() => moveLeft()}
+      >
+        Prev
       </button>
 
-      <button className="p-3 bg-buttonColor text-gray-light w-24 rounded-md carouselBtnNext">
+      <button
+        className="p-3 bg-buttonColor text-gray-light w-24 rounded-md carouselBtnNext"
+        onClick={() => moveRight()}
+      >
         Next
       </button>
-   </section>
-  )
-
+    </section>
+  );
 }
 function PersonalDataForm() {
 
