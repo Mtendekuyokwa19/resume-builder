@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Education, Experience, PersonalDataIcon, Skills } from "./svg"
+import { Add, Education, Experience, PersonalDataIcon, Skills } from "./svg"
 import { v4 as uuid } from 'uuid';
 export function FormTabs() {
 
@@ -14,10 +14,10 @@ export function FormTabs() {
 }
 
 function FormBody() {
-  const Forms=[<PersonalDataForm/>]
+  const Forms=[<PersonalDataForm/>,<EducationForm/>,<ExperienceForm/>]
   return(
     <div className="">
-      {Forms[0]}
+      {Forms[2]}
     </div>
   )
 }
@@ -128,25 +128,36 @@ function EducationForm() {
       <section className="flex flex-col gap-3 m-8 ">
         <div className="flex flex-col gap-1">
            <h1 className="text-fontGray text-xl ">Education</h1>
-           <p className="text-textGrey">Please fill in your history</p>
+           <p className="text-textGrey">Please fill in your Education details</p>
         </div>
         <form action="" method="post" className="flex flex-col gap-4">
 
             <section className="flex justify-between">
 
+
                 <div className="formElement">
-                  <label htmlFor="Name" className="text-fontGray">School:</label>
+                  <label htmlFor="Name" className="text-fontGray">School Name:</label>
                   <input type="text" id="Name" placeholder="Mombera University" />
                 </div>
 
 
                 <div className="formElement">
-                  <label htmlFor="email" className="text-fontGray">Email:</label>
-                  <input type="email" id="email" placeholder="example@linux.org"/>
+                  <label htmlFor="email" className="text-fontGray">Degree Major:</label>
+                  <input type="email" id="email" placeholder="Computer Science"/>
                 </div>
 
             </section>
+            <section className="flex justify-between">
+              <div className="formElement">
+                  <label htmlFor="Startdate" className="text-fontGray">Start Date:</label>
+                  <input type="date" id="Startdate" className="w-72"  />
+              </div>
+              <div className="formElement">
+                  <label htmlFor="finishDate" className="text-fontGray">Finish Date:</label>
+                  <input type="date" id="finishDate" className="w-72"/>
+              </div>
 
+            </section>
 
 
         </form>
@@ -154,4 +165,59 @@ function EducationForm() {
       </section>
   )
 
+}
+
+function ExperienceForm() {
+  return (
+    <section className="flex flex-col gap-3 m-8 ">
+      <section className="flex flex-col gap-1">
+        <div className="flex justify-between">
+          <h1 className="text-fontGray text-xl ">Experience</h1>
+          <button title="Add Experience" className="bg-gray-light rounded-full w-7 flex justify-center items-center">
+          <Add/>
+          </button>
+        </div>
+
+        <p className="text-textGrey">Please fill in your Job history</p>
+      </section>
+      <form action="" method="post" className="flex flex-col gap-4">
+        <section className="flex justify-between">
+          <div className="formElement">
+            <label htmlFor="Name" className="text-fontGray">
+              Job Title:
+            </label>
+            <input type="text" id="Name" placeholder="UX Designer" />
+          </div>
+
+          <div className="formElement">
+            <label htmlFor="email" className="text-fontGray">
+              Company Name:
+            </label>
+            <input type="email" id="email" placeholder="Computer Science" />
+          </div>
+        </section>
+        <section className="flex justify-between">
+          <div className="formElement">
+            <label htmlFor="Startdate" className="text-fontGray">
+              Start Date:
+            </label>
+            <input type="date" id="Startdate" className="w-72" />
+          </div>
+          <div className="formElement">
+            <label htmlFor="finishDate" className="text-fontGray">
+              Finish Date:
+            </label>
+            <input type="date" id="finishDate" className="w-72" />
+          </div>
+        </section>
+
+        <section className="flex flex-col formElement">
+          <label htmlFor="Desciption" className="text-fontGray">
+            Desciption:
+          </label>
+          <textarea name="Desciption" id="Desciption"></textarea>
+        </section>
+      </form>
+    </section>
+  );
 }

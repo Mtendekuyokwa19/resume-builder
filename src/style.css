@@ -6,7 +6,7 @@ li{
   display: flex;
   flex-direction: column;
   gap: 3px;
-  input{
+  input,textarea{
     outline: solid;
     outline-color: #d3dce6;
     outline-width: 3px;
@@ -43,7 +43,7 @@ li{
 }
 
 .carouselBtnNext:hover {
-  background-color: white;
+  background-color: transparent;
   outline-color: #d3dce6;
   outline-width: 3px;
   outline: solid;
