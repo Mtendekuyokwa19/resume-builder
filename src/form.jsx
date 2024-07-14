@@ -6,7 +6,7 @@ export function FormTabs() {
 
   return(
     <div className="flex flex-col gap-3 w-1/2 h-2/3 bg-red-400 p-6">
-      <TabCarousel/>
+
       <FormBody/>
 
     </div>
@@ -15,6 +15,7 @@ export function FormTabs() {
 }
 
 function FormBody() {
+
   const [position, setposition] = useState(0);
   function moveLeft() {
 
@@ -25,39 +26,49 @@ function FormBody() {
   function moveRight() {
      return position===3?setposition(0):setposition(position + 1);
   }
+
   const Forms=[<PersonalDataForm/>,<EducationForm/>,<ExperienceForm/>,<SkillsForm/>]
   return (
-    <div>
+    <>
+      <TabCarousel setIndex={setposition} />;
       {Forms[position]}
-      <CarouselButtons moveLeft={()=>moveLeft()} moveRight={()=>moveRight()} index={position} />
-    </div>
+
+        <CarouselButtons
+          moveLeft={() => moveLeft()}
+          moveRight={() => moveRight()}
+          index={position}
+        />
+
+    </>
   );
 }
 
-function TabCarousel(){
+function TabCarousel({setIndex}){
   let icons=[{icon:<PersonalDataIcon/>,id:uuid()},{icon:<Education/>,id:uuid()},{icon:<Experience/>,id:uuid()},{icon:<Skills/>,id:uuid()}]
 
 
 return(
-  <nav className="flex bg-gray-400  justify-center items-center gap-4 border-gray-light border-b-2 p-2">
+  <nav className="flex bg-gray-400  justify-center items-center gap-4 border-gray-light border-b-2 p-2 ">
     {icons.map(icon=>{
 
-      return(<>
-
-      <Button key={icon.id}>{icon.icon}</Button>
-      {(icons.indexOf(icon)!==icons.length-1)?<Line/>:null}
-      </>
-      )
+      return (
+        <>
+          <Button setIndex={()=>setIndex(icons.indexOf(icon)  )}  key={icon.id}>
+            {icon.icon}
+          </Button>
+          {icons.indexOf(icon) !== icons.length - 1 ? <Line  /> : null}
+        </>
+      );
 })}
   </nav>
 )
 }
 
-function Button({children}) {
+function Button({children,setIndex,index}) {
 
   return(
     <>
-    <button className="bg-gray p-3 rounded-full">
+    <button onClick={()=>setIndex(index)}  className="bg-gray p-3 rounded-full flex justify-center items-center tabIcon">
       {children}
     </button>
 
@@ -98,7 +109,7 @@ function CarouselButtons({ moveLeft, moveRight, index }) {
 function PersonalDataForm() {
 
   return(
-      <section className="flex flex-col gap-3 m-8 ">
+      <section className="flex flex-col gap-3 mx-8 ">
         <div className="flex flex-col gap-1">
            <h1 className="text-fontGray text-xl ">Personal Data</h1>
            <p className="text-textGrey">Please fill in your personal information</p>
@@ -142,7 +153,7 @@ function PersonalDataForm() {
 function EducationForm() {
 
   return(
-      <section className="flex flex-col gap-3 m-8 ">
+      <section className="flex flex-col gap-3 mx-8 ">
         <div className="flex flex-col gap-1">
            <h1 className="text-fontGray text-xl ">Education</h1>
            <p className="text-textGrey">Please fill in your Education details</p>
@@ -186,7 +197,7 @@ function EducationForm() {
 
 function ExperienceForm() {
   return (
-    <section className="flex flex-col gap-3 m-8 ">
+    <section className="flex flex-col gap-3 mx-8 ">
       <section className="flex flex-col gap-1">
         <div className="flex justify-between">
           <h1 className="text-fontGray text-xl ">Experience</h1>
@@ -243,7 +254,7 @@ function SkillsForm() {
 
 
   return (
-    <section className="flex flex-col gap-3 m-8 ">
+    <section className="flex flex-col gap-3 mx-8 ">
       <section className="flex flex-col gap-1">
         <div className="flex justify-between">
           <h1 className="text-fontGray text-xl ">Tools and Technologies</h1>

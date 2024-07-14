@@ -45,8 +45,18 @@ li{
 
 
 }
+.tabIcon{
+  transition: background-color 200ms ease-in-out;
+    transition-property: color;
 
-.carouselBtnNext:hover {
+}
+
+.tabIcon:hover{
+  background-color: #9af3c2;
+
+}
+
+.carouselBtnNext:hover{
   background-color: transparent;
   outline-color: #d3dce6;
   outline-width: 3px;
