@@ -30,7 +30,7 @@ function FormBody() {
   const Forms=[<PersonalDataForm/>,<EducationForm/>,<ExperienceForm/>,<SkillsForm/>]
   return (
     <>
-      <TabCarousel setIndex={setposition} />;
+      <TabCarousel setIndex={setposition} index={position} />;
       {Forms[position]}
 
         <CarouselButtons
@@ -43,7 +43,7 @@ function FormBody() {
   );
 }
 
-function TabCarousel({setIndex}){
+function TabCarousel({setIndex,index}){
   let icons=[{icon:<PersonalDataIcon/>,id:uuid()},{icon:<Education/>,id:uuid()},{icon:<Experience/>,id:uuid()},{icon:<Skills/>,id:uuid()}]
 
 
@@ -53,10 +53,14 @@ return(
 
       return (
         <>
-          <Button setIndex={()=>setIndex(icons.indexOf(icon)  )}  key={icon.id}>
+          <Button
+            setIndex={() => setIndex(icons.indexOf(icon))}
+            color={index === icons.indexOf(icon) ? "#9af3c2" : "#eff0f6"}
+            key={icon.id}
+          >
             {icon.icon}
           </Button>
-          {icons.indexOf(icon) !== icons.length - 1 ? <Line  /> : null}
+          {icons.indexOf(icon) !== icons.length - 1 ? <Line /> : null}
         </>
       );
 })}
@@ -64,11 +68,11 @@ return(
 )
 }
 
-function Button({children,setIndex,index}) {
+function Button({children,setIndex,index,color}) {
 
   return(
     <>
-    <button onClick={()=>setIndex(index)}  className="bg-gray p-3 rounded-full flex justify-center items-center tabIcon">
+    <button onClick={()=>setIndex(index)} style={{background:color}} className="bg-gray p-3 rounded-full flex justify-center items-center tabIcon">
       {children}
     </button>
 
