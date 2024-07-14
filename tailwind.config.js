@@ -15,6 +15,8 @@ module.exports = {
       fontGray: "#19114a",
       textGrey: "#6f6c8f",
       buttonColor: "#175bb5",
+      resumeColor: "#3e323e",
+      textResume: "#ffffff",
     },
     extend: {},
   },

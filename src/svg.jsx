@@ -100,3 +100,45 @@ export function Skills({color="text-indigo-500"}) {
       </svg>
     );
   }
+
+
+  export function CallIcon() {
+
+
+    return (
+      <svg
+        class="h-4 w-4 text-gray-500"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        strokeWidth="2"
+        stroke="currentColor"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {" "}
+        <path stroke="none" d="M0 0h24v24H0z" />{" "}
+        <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+      </svg>
+    );
+  }
+
+  export function Mail() {
+
+    return (
+      <svg
+        class="h-4 w-4 text-gray-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        />
+      </svg>
+    );
+  }

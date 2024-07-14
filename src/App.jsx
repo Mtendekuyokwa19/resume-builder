@@ -1,5 +1,7 @@
 import { FormTabs } from "./form"
+import { Resume } from "./resume"
 import { Github, Preview } from "./svg"
+import { Fragment } from "react";
 
 export default function App() {
   return (
@@ -44,7 +46,10 @@ function Nav() {
 
 function WorkSpace() {
 
-  return(
-    <FormTabs/>
-  )
+  return (
+    <section className="flex" >
+      <FormTabs />
+      <Resume />
+    </section>
+  );
 }
