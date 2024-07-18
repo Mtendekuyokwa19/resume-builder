@@ -3,7 +3,7 @@ import { CallIcon, Mail } from "./svg";
 export function Resume() {
 
     return(
-      <section className="w-1/2 flex flex-col">
+      <section className="w-1/2 flex flex-col bg-gray mt-2">
       <Header/>
       <SelfDescription/>
       <DetailSpace/>
@@ -62,7 +62,7 @@ function Work() {
 function PersonalStack() {
 
   return(
-    <section className="flex flex-col gap-6 w-1/2">
+    <section className="flex flex-col gap-6 w-1/2 pl-2">
 
     <Contact/>
     <Skills/>

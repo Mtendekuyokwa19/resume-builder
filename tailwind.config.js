@@ -17,6 +17,8 @@ module.exports = {
       buttonColor: "#175bb5",
       resumeColor: "#3e323e",
       textResume: "#ffffff",
+      navBar: "#b7b7a4",
+      black:"#00000"
     },
     extend: {},
   },
