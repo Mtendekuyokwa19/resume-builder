@@ -94,9 +94,9 @@ function EducationTab(){
 
   return (
     <section>
-      <span className=" bg-resumeColor p-2 w-1/3">
+      {/* <span className=" bg-resumeColor">
         <h1 className="text-xl">Education</h1>
-      </span>
+      </span> */}
     </section>
   );
 }

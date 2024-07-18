@@ -55,7 +55,7 @@ return(
         <>
           <Button
             setIndex={() => setIndex(icons.indexOf(icon))}
-            color={index === icons.indexOf(icon) ? "#9af3c2" : "#eff0f6"}
+            color={index === icons.indexOf(icon) ? "#9ed8db" : "#eff0f6"}
             key={icon.id}
           >
             {icon.icon}
