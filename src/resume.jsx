@@ -3,7 +3,7 @@ import { CallIcon, Mail } from "./svg";
 export function Resume() {
 
     return(
-      <section className="w-1/2">
+      <section className="w-1/2 flex flex-col">
       <Header/>
       <DetailSpace/>
       </section>
@@ -24,7 +24,7 @@ function Header() {
 function DetailSpace(){
 
   return(
-    <section className="flex gap-12">
+    <section className="flex justify-stretch">
         <PersonalStack/>
         <Work/>
     </section>
@@ -42,7 +42,7 @@ function Work() {
 function PersonalStack() {
 
   return(
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-6 w-1/2">
 
     <Contact/>
     <Skills/>
@@ -53,8 +53,8 @@ function PersonalStack() {
 function Contact() {
 
   return (
-    <section className="my-4 flex flex-col gap-1">
-      <span className="border-b-2 border-x-resumeColor border-solid w-1/3">
+    <section className="my-4 flex flex-col gap-1 basis-1">
+      <span className="border-b-2 border-x-resumeColor border-solid w-2/3">
         <h1 className="text-xl text-fontGray">Contact</h1>
       </span>
 
@@ -75,8 +75,8 @@ function Skills() {
 
 
   return (
-    <section className="my-4 flex flex-col gap-2">
-      <span className="border-b-2 border-x-resumeColor border-solid w-1/3">
+    <section className="my-4 flex flex-col gap-2 items-stretch">
+      <span className="border-b-2 border-x-resumeColor border-solid w-2/3 ">
         <h1 className="text-xl text-fontGray">Tools & Technologies</h1>
       </span>
 
@@ -94,9 +94,9 @@ function EducationTab(){
 
   return (
     <section>
-      {/* <span className=" bg-resumeColor">
-        <h1 className="text-xl">Education</h1>
-      </span> */}
+
+        <h1 className="text-xl text-textResume bg-fontGray p-2">Education</h1>
+
     </section>
   );
 }
