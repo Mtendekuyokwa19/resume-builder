@@ -112,45 +112,60 @@ function CarouselButtons({ moveLeft, moveRight, index }) {
 }
 function PersonalDataForm() {
 
-  return(
-      <section className="flex flex-col gap-3 mx-8 ">
-        <div className="flex flex-col gap-1">
-           <h1 className="text-fontGray text-xl ">Personal Data</h1>
-           <p className="text-textGrey">Please fill in your personal information</p>
-        </div>
-        <form action="" method="post" className="flex flex-col gap-4">
+  return (
+    <section className="flex flex-col gap-3 mx-8 ">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-fontGray text-xl ">Personal Data</h1>
+        <p className="text-textGrey">
+          Please fill in your personal information
+        </p>
+      </div>
+      <form action="" method="post" className="flex flex-col gap-4">
+        <section className="flex justify-between">
+          <div className="formElement">
+            <label htmlFor="Name" className="text-fontGray">
+              Fullname:
+            </label>
+            <input type="text" id="Name" placeholder="Joseph Ubuntu" />
+          </div>
 
-            <section className="flex justify-between">
+          <div className="formElement">
+            <label htmlFor="email" className="text-fontGray">
+              Email:
+            </label>
+            <input type="email" id="email" placeholder="example@linux.org" />
+          </div>
+        </section>
+        <section className="flex justify-between">
+          <div className="formElement">
+            <label htmlFor="PhoneNumber" className="text-fontGray">
+              Phone Number:
+            </label>
+            <input type="tel" id="PhoneNumber" placeholder="+2654567891011" />
+          </div>
+          <div className="formElement">
+            <label htmlFor="JobTitle" className="text-fontGray">
+              Job Title:
+            </label>
+            <input type="text" id="JobTitle" placeholder="Product Designer" />
+          </div>
+        </section>
+      </form>
 
-                <div className="formElement">
-                  <label htmlFor="Name" className="text-fontGray">Fullname:</label>
-                  <input type="text" id="Name" placeholder="Joseph Ubuntu" />
-                </div>
+      <section className="flex flex-col">
+        <label htmlFor="bio" className="text-fontGray">
+          Bio:
+        </label>
 
-
-                <div className="formElement">
-                  <label htmlFor="email" className="text-fontGray">Email:</label>
-                  <input type="email" id="email" placeholder="example@linux.org"/>
-                </div>
-
-            </section>
-            <section className="flex justify-between">
-              <div className="formElement">
-                  <label htmlFor="PhoneNumber" className="text-fontGray">Phone Number:</label>
-                  <input type="tel" id="PhoneNumber" placeholder="+2654567891011" />
-              </div>
-              <div className="formElement">
-                  <label htmlFor="JobTitle" className="text-fontGray">Job Title:</label>
-                  <input type="text" id="JobTitle" placeholder="Product Designer"/>
-              </div>
-
-            </section>
-
-
-        </form>
-
+        <textarea
+          name="bio"
+          id="bio"
+          className="Bio"
+          placeholder="I love to code on weekends and help my little brother work on his arduino. "
+        ></textarea>
       </section>
-  )
+    </section>
+  );
 
 }
 

@@ -5,6 +5,7 @@ export function Resume() {
     return(
       <section className="w-1/2 flex flex-col">
       <Header/>
+      <SelfDescription/>
       <DetailSpace/>
       </section>
     )
@@ -20,11 +21,28 @@ function Header() {
   )
 
 }
+function SelfDescription() {
 
+  return (
+    <section className="flex flex-col my-2 p-2">
+      <h1 className="text-xl text-textResume bg-fontGray px-3 ">
+        Personal Introduction
+      </h1>
+      <p className="text-justify">
+        I'm a data scientist with over 5 years of experience in building and
+        deploying machine learning models. I'm passionate about using data to
+        solve real-world problems and am always looking for new challenges.
+        explore the world through words and flavors. Currently working on a
+        historical fiction novel and perfecting my sourdough bread recipe.
+      </p>
+    </section>
+  );
+
+}
 function DetailSpace(){
 
   return(
-    <section className="flex justify-stretch">
+    <section className="flex justify-stretch py-3">
         <PersonalStack/>
         <Work/>
     </section>
@@ -33,10 +51,12 @@ function DetailSpace(){
 }
 
 function Work() {
-  return(
-
-    <EducationTab/>
-  )
+  return (
+    <div className="flex flex-col gap-1">
+      <EducationTab />
+      <Experience />
+    </div>
+  );
 
 }
 function PersonalStack() {
@@ -53,7 +73,7 @@ function PersonalStack() {
 function Contact() {
 
   return (
-    <section className="my-4 flex flex-col gap-1 basis-1">
+    <section className="flex flex-col gap-1 basis-1">
       <span className="border-b-2 border-x-resumeColor border-solid w-2/3">
         <h1 className="text-xl text-fontGray">Contact</h1>
       </span>
@@ -93,10 +113,45 @@ function Skills() {
 function EducationTab(){
 
   return (
-    <section>
+    <section className="flex flex-col border-l-4 border-l-fontGray p-2">
+      <section>
+        <h1 className="text-xl text-textResume bg-fontGray px-3">Education</h1>
+      </section>
 
-        <h1 className="text-xl text-textResume bg-fontGray p-2">Education</h1>
+      <ul>
+        <li className="list-disc">
+          <h3 className="font-bold underline">Bachelors Degree In Arts</h3>
+          <p className="italic">Mombera university</p>
+        </li>
+        <li className="list-disc">
+          <h3 className="font-bold underline">Master's Degree In African History</h3>
+          <p  className="italic">University of cape town</p>
+        </li>
+      </ul>
+    </section>
+  );
+}
 
+function Experience() {
+  return (
+    <section className="flex flex-col border-l-4 border-l-fontGray p-2">
+      <section>
+        <h1 className="text-xl text-textResume bg-fontGray px-3">Experience</h1>
+      </section>
+
+      <ul>
+        <li className="list-disc">
+          <h3 className="font-bold underline">Airbnb</h3>
+          <p className="italic">systems analyst</p>
+          <p className="font-mono">2014-2022</p>
+        </li>
+        <li className="list-disc">
+          <h3 className="font-bold underline">Agriculture club</h3>
+          <p className="italic">Gardener</p>
+
+          <p className="font-mono">2023-now</p>
+        </li>
+      </ul>
     </section>
   );
 }

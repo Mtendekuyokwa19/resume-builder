@@ -16,6 +16,15 @@ li{
 
 }
 
+.Bio{
+outline: solid;
+  outline-color: #d3dce6;
+  outline-width: 3px;
+  padding: 13px;
+  border-radius: 10px;
+
+}
+
 .carouselBtnPrev{
   transition: background-color 200ms ease-in-out;
   transition-property: color;
