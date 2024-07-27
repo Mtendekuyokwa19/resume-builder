@@ -80,7 +80,7 @@ class PersonQualification {
 
 }
 
-class Education{
+export class Education{
 
 
 

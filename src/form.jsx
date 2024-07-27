@@ -1,7 +1,8 @@
 import { Fragment } from "react";
-import { Add, Education, Experience, PersonalDataIcon, Skills } from "./svg"
+import { Add, DeleteIcon, Education, Experience, PersonalDataIcon, Skills } from "./svg"
 import { v4 as uuid } from 'uuid';
 import { useState } from "react";
+import { Education as School } from "./App";
 export function FormTabs({configureQualification,Qualifications}) {
 
   return(
@@ -201,16 +202,50 @@ function PersonalDataForm({configureQualification,Qualifications}) {
 
 }
 
-function EducationForm({ configureQualification, Qualification }) {
+function EducationForm({ configureQualification, Qualifications }) {
+  let learningPlace = new School();
+  let learningPlaceTwo = new School();
+  const [educationPlaces, seteducationPlaces] = useState([learningPlace]);
+  const [qualificationNoticeBoard, setqualificationNoticeBoard] = useState(null);
+
+function ListQualification(){
+let schools=Qualifications.education.map((school) => { return <AllSchools school={school} />});
+setqualificationNoticeBoard(schools )
+
+
+}
+
+
+
   return (
     <section className="flex flex-col gap-3 mx-8 ">
       <div className="flex flex-col gap-1">
-        <h1 className="dark:text-blueGray-100 text-textGrey text-xl ">
-          Education
-        </h1>
+        <div className="flex justify-between">
+          <h1 className="dark:text-blueGray-100 text-textGrey text-xl ">
+            Education
+          </h1>
+          <button
+            title="Add Experience"
+            className="bg-gray-light rounded-full w-7 flex justify-center items-center"
+
+            onClick={()=>{seteducationPlaces([learningPlace,learningPlaceTwo])
+              configureQualification({
+              ...Qualifications,
+              education: educationPlaces,
+
+            });
+            ListQualification();
+
+            console.log(Qualifications)}}
+          >
+            <Add />
+          </button>
+        </div>
+
         <p className="text-textGrey dark:text-blueGray-400">
           Please fill in your Education details
         </p>
+        {qualificationNoticeBoard}
       </div>
       <form action="" method="post" className="flex flex-col gap-4">
         <section className="flex justify-between">
@@ -218,14 +253,41 @@ function EducationForm({ configureQualification, Qualification }) {
             <label htmlFor="Name" className="dark:text-blueGray-300">
               School Name:
             </label>
-            <input type="text" id="Name" placeholder="Mombera University" />
+            <input
+              type="text"
+              id="Name"
+              placeholder="Mombera University"
+              onChange={(e) => {
+                educationPlaces[educationPlaces.length-1].schoolName =
+                  e.target.value;
+                seteducationPlaces([...educationPlaces]);
+                console.log(educationPlaces);
+                configureQualification({
+                  ...Qualifications,
+                  education: educationPlaces,
+                });
+              }}
+            />
           </div>
 
           <div className="formElement">
             <label htmlFor="email" className="dark:text-blueGray-300">
               Degree Major:
             </label>
-            <input type="email" id="email" placeholder="Computer Science" />
+            <input
+              type="text"
+              id="email"
+              placeholder="Computer Science"
+              onChange={(e) => {
+                educationPlaces[educationPlaces.length-1].degreeMajor = e.target.value;
+                seteducationPlaces([...educationPlaces]);
+                console.log(educationPlaces);
+                configureQualification({
+                  ...Qualifications,
+                  education: educationPlaces,
+                });
+              }}
+            />
           </div>
         </section>
         <section className="flex justify-between">
@@ -342,4 +404,15 @@ function SkillsForm({ configureQualification, Qualification }) {
       </form>
     </section>
   );
+}
+
+function AllSchools({school}){
+
+  return(
+    <div className="flex dark:bg-gray-200 p-2 justify-between rounded-md">
+      <h4 className="italic">{school.schoolName}</h4>
+      <button title="deleteSchool"> <DeleteIcon/> </button>
+    </div>
+  )
+
 }

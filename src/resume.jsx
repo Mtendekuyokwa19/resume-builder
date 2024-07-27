@@ -47,10 +47,10 @@ function DetailSpace({details}){
 
 }
 
-function Work({detials}) {
+function Work({details}) {
   return (
     <div className="flex flex-col gap-1">
-      <EducationTab details={detials} />
+      <EducationTab details={details} />
       <Experience />
     </div>
   );
@@ -110,8 +110,7 @@ for (let i = 0; i < details.stack.length; i++) {
   );
 }
 
-function EducationTab(){
-
+function EducationTab({ details }) {
   return (
     <section className="flex flex-col border-l-4 border-l-fontGray p-2">
       <section>
@@ -119,15 +118,17 @@ function EducationTab(){
       </section>
 
       <ul>
-        <li className="list-disc">
-          <h3 className="font-bold underline">Bachelors Degree In Arts</h3>
-          <p className="italic">Mombera university</p>
-        </li>
-        <li className="list-disc">
-          <h3 className="font-bold underline">Master's Degree In African History</h3>
-          <p  className="italic">University of cape town</p>
-        </li>
-      </ul>
+
+{details.education.map((school)=>{
+
+
+     return(  <li className="list-disc">
+                  <h3 className="font-bold underline">
+                    {school.degreeMajor}
+                  </h3>
+                  <p className="italic">{school.schoolName}</p>
+                </li>); })}
+</ul>
     </section>
   );
 }

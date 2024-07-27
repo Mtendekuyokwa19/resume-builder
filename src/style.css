@@ -66,7 +66,7 @@ outline: solid;
 }
 .content{
 
-  height: 100vh;
+  height: 100%;
 }
 .carouselBtnNext:hover{
   background-color: transparent;
