@@ -55,7 +55,7 @@ function WorkSpace() {
 
   function configureQualification(Qualifications) {
 
-    setQualifications(Qualifications);
+    setQualifications(Qualifications); console.log(Qualifications, "i");
   }
 
   return (
@@ -74,9 +74,11 @@ class PersonQualification {
     "I'm a data scientist with over 5 years of experience in building and deploying machine learning models. I'm passionate about using data to solve real-world problems and am always looking for new challenges. explore the world through words and flavors. Currently working on a historical fiction novel and perfecting my sourdough bread recipe.";
   Email = "jack@linux.org";
   Jobtitle = "Product Manager";
-  stack=["Django","Node Js","Bython","Java"];
+  stack=["Node Js","Bython","Java"];
   education=[new Education(),new Education("Havard college","farmology")]
   experience=[new Experience("Airbnb","Product Designer","2024-2034"),new Experience("Microsoft","systems analyst","2013-2024")]
+
+
 
 }
 
