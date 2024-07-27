@@ -372,10 +372,23 @@ function ExperienceForm({ configureQualification, Qualification }) {
 }
 
 function SkillsForm({ configureQualification, Qualifications }) {
+
+  const [techList, settechList] = useState(Qualifications.stack);
+  const [disabled, setdisabled] = useState(false);
+
+  let keys=[];
+
+  for (let x = 0; x < techList.length; x++) {
+  keys[x]=uuid()
+
+  }
+  let tools=techList.map(stack=><AllStacks key={keys[techList.indexOf(stack)]} name={stack} index={techList.indexOf(stack)} techList={techList} settechList={(techList)=>{settechList(techList); configureQualification({...Qualifications,'stack':techList})}}/>);
 const [stack, setstack] = useState(null);
   function handleClick() {
       let oldStack=Qualifications.stack;
       oldStack.push(stack)
+
+      let ButtonState=techList.length>4?setdisabled(true):false;
 
      return configureQualification({...Qualifications,'stack':oldStack});
 
@@ -394,6 +407,7 @@ const [stack, setstack] = useState(null);
         <p className="text-textGrey dark:text-blueGray-400">
           Please Add a technology you are familiar with
         </p>
+        <div className="flex justify-evenly">{tools}</div>
       </section>
       <form action="" method="" className="flex flex-col gap-4">
         <section className="flex justify-between">
@@ -401,14 +415,22 @@ const [stack, setstack] = useState(null);
             <label htmlFor="Name" className="dark:text-blueGray-300">
               Technology:
             </label>
-            <input type="text" id="Name" placeholder="NodeJS" onChange={(e)=>{setstack(e.target.value)}} />
+            <input
+              type="text"
+              id="Name"
+              placeholder="NodeJS"
+              onChange={(e) => {
+                setstack(e.target.value);
+              }}
+            />
 
             <button
               title="Add Skills"
               className="bg-gray-light rounded-md my-6 p-3 flex justify-center gap-1 items-center submitSkill"
-              onClick={(e)=>{
-                e.preventDefault()
-               handleClick()
+              disabled={disabled}
+              onClick={(e) => {
+                e.preventDefault();
+                handleClick();
               }}
             >
               <Add /> <p>Submit</p>
@@ -429,4 +451,17 @@ function AllSchools({school}){
     </div>
   )
 
+}
+
+function AllStacks({ name,index ,techList,settechList}) {
+  let techStack=techList;
+
+  return (
+    <div className="flex dark:bg-gray-200 p-2 justify-between gap-2 rounded-md shadow-md">
+      <h4 className="italic">{name}</h4>
+      <button title="deleteSchool" onClick={()=>{techStack.splice(index,1); console.log(techStack); settechList(techStack)}}>
+        <DeleteIcon />
+      </button>
+    </div>
+  );
 }

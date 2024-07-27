@@ -84,3 +84,10 @@ outline: solid;
     outline-width: 3px;
 
 }
+
+button:disabled{
+
+  background-color: transparent;
+  color:white;
+  border: 2px solid #d3dce6;
+}
