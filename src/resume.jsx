@@ -90,7 +90,7 @@ function Contact({details}) {
 
 function Skills({details}) {
 let keys=[];
-console.log(details)
+
 
 for (let i = 0; i < details.stack.length; i++) {
   keys[i]=uuidv4();
@@ -104,7 +104,7 @@ for (let i = 0; i < details.stack.length; i++) {
       </span>
 
       <ul className="list-disc list-inside pl-5">
-        {details.stack.map(language=><li key={keys[details.stack.indexOf(language)]} className="list-disc">{language}</li>)}
+        {details.stack.map(language=>{ console.log(language,"er");return <li className="list-disc">{language}</li>})  }
       </ul>
     </section>
   );

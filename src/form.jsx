@@ -372,8 +372,16 @@ function ExperienceForm({ configureQualification, Qualification }) {
 }
 
 function SkillsForm({ configureQualification, Qualifications }) {
+const [stack, setstack] = useState(null);
+  function handleClick() {
+      let oldStack=Qualifications.stack;
+      oldStack.push(stack)
 
-  const [stack, setstack] = useState(null);
+     return configureQualification({...Qualifications,'stack':oldStack});
+
+  }
+
+
   return (
     <section className="flex flex-col gap-3 mx-8 ">
       <section className="flex flex-col gap-1">
@@ -400,10 +408,7 @@ function SkillsForm({ configureQualification, Qualifications }) {
               className="bg-gray-light rounded-md my-6 p-3 flex justify-center gap-1 items-center submitSkill"
               onClick={(e)=>{
                 e.preventDefault()
-                let qualification=Qualifications;
-                qualification.stack.push(stack);
-
-                configureQualification(qualification);
+               handleClick()
               }}
             >
               <Add /> <p>Submit</p>

@@ -55,7 +55,7 @@ export function Skills({color="text-indigo-500"}) {
 
     return (
       <svg
-        class="h-6 w-6 text-textResume"
+        className="h-6 w-6 text-textResume"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -114,7 +114,7 @@ export function Skills({color="text-indigo-500"}) {
 
     return (
       <svg
-        class="h-4 w-4 text-gray-500"
+        className="h-4 w-4 text-gray-500"
         width="24"
         height="24"
         viewBox="0 0 24 24"
@@ -135,7 +135,7 @@ export function Skills({color="text-indigo-500"}) {
 
     return (
       <svg
-        class="h-4 w-4 text-gray-500"
+        className="h-4 w-4 text-gray-500"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
