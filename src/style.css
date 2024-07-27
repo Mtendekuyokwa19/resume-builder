@@ -28,7 +28,7 @@ outline: solid;
 .carouselBtnPrev{
   transition: background-color 200ms ease-in-out;
   transition-property: color;
-  color: black;
+
   outline: solid;
   outline-color: #d3dce6;
   outline-width: 3px;
@@ -49,7 +49,7 @@ outline: solid;
 .carouselBtnNext {
   background-color: none;
   transition: background-color 200ms ease-in-out;
-  transition-property: color;
+
 
 
 
@@ -64,13 +64,21 @@ outline: solid;
   background-color: #9af3c2;
 
 }
+.content{
 
+  height: 100vh;
+}
 .carouselBtnNext:hover{
   background-color: transparent;
   outline-color: #d3dce6;
   outline-width: 3px;
   outline: solid;
   color: black;
+  @media (prefers-color-scheme: dark) {
+
+    color:white;
+  }
+
     outline: solid;
     outline-color: #d3dce6;
     outline-width: 3px;
