@@ -339,6 +339,16 @@ function clearForm() {
 }
 
 function ExperienceForm({ configureQualification, Qualification }) {
+  let personalQualification=Qualification;
+  let initialJob=new Experience("University of bronx","Software engineer","2012-2024");
+
+  const [jobs, setjobs] = useState([initialJob]);
+function clearForm() {
+  document.querySelector("#experienceForm").reset()
+
+}
+
+
   return (
     <section className="flex flex-col gap-3 mx-8 ">
       <section className="flex flex-col gap-1">
@@ -349,6 +359,11 @@ function ExperienceForm({ configureQualification, Qualification }) {
           <button
             title="Add Experience"
             className="bg-gray-light rounded-full w-7 flex justify-center items-center"
+            onClick={() => {
+              clearForm();
+
+              console.log(personalQualification)
+            }}
           >
             <Add />
           </button>
@@ -358,20 +373,43 @@ function ExperienceForm({ configureQualification, Qualification }) {
           Please fill in your Job history
         </p>
       </section>
-      <form action="" method="post" className="flex flex-col gap-4">
+      <form
+        action=""
+        method="post"
+        className="flex flex-col gap-4"
+        id="experienceForm"
+      >
         <section className="flex justify-between">
           <div className="formElement">
             <label htmlFor="Name" className="dark:text-blueGray-300">
               Job Title:
             </label>
-            <input type="text" id="Name" placeholder="UX Designer" />
+            <input
+              type="text"
+              id="Name"
+              placeholder="UX Designer"
+              onChange={(e) =>
+                (personalQualification.experience[
+                  personalQualification.experience.length - 1
+                ].Role = e.target.value)
+              }
+            />
           </div>
 
           <div className="formElement">
             <label htmlFor="email" className="dark:text-blueGray-300">
               Company Name:
             </label>
-            <input type="email" id="email" placeholder="Computer Science" />
+            <input
+              type="email"
+              id="email"
+              placeholder="Computer Science"
+              onChange={(e) =>
+                (personalQualification.experience[
+                  personalQualification.experience.length - 1
+                ].CompanyName = e.target.value)
+              }
+            />
           </div>
         </section>
         <section className="flex justify-between">
@@ -379,13 +417,31 @@ function ExperienceForm({ configureQualification, Qualification }) {
             <label htmlFor="Startdate" className="dark:text-blueGray-300">
               Start Date:
             </label>
-            <input type="date" id="Startdate" className="w-72" />
+            <input
+              type="date"
+              id="Startdate"
+              className="w-72"
+              onChange={(e) =>
+                (personalQualification.experience[
+                  personalQualification.experience.length - 1
+                ].start = e.target.value)
+              }
+            />
           </div>
           <div className="formElement">
             <label htmlFor="finishDate" className="dark:text-blueGray-300">
               Finish Date:
             </label>
-            <input type="date" id="finishDate" className="w-72" />
+            <input
+              type="date"
+              id="finishDate"
+              className="w-72"
+              onChange={(e) =>
+                (personalQualification.experience[
+                  personalQualification.experience.length - 1
+                ].end = e.target.value)
+              }
+            />
           </div>
         </section>
 
@@ -393,7 +449,15 @@ function ExperienceForm({ configureQualification, Qualification }) {
           <label htmlFor="Desciption" className="dark:text-blueGray-300">
             Desciption:
           </label>
-          <textarea name="Desciption" id="Desciption"></textarea>
+          <textarea
+            name="Desciption"
+            id="Desciption"
+            onChange={(e) =>
+              (personalQualification.experience[
+                personalQualification.experience.length - 1
+              ].description = e.target.value)
+            }
+          ></textarea>
         </section>
       </form>
     </section>

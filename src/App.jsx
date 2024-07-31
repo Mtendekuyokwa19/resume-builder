@@ -95,7 +95,7 @@ export class Education{
 
 }
 
-class Experience {
+export class Experience {
   constructor(
     CompanyName = "Mombera university",
     Role = "computer science",
@@ -104,5 +104,13 @@ class Experience {
     this.CompanyName=CompanyName;
     this.Role=Role;
     this.year=year
+  }
+
+  description=""
+  start=new Date();
+  end=new Date();
+
+  setYear(){
+    this.year=this.start.getFullYear()+"-"+this.end.getFullYear();
   }
 }
