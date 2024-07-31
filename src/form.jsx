@@ -207,14 +207,36 @@ function EducationForm({ configureQualification, Qualifications }) {
   let learningPlaceTwo = new School();
   const [educationPlaces, seteducationPlaces] = useState([learningPlace]);
   const [qualificationNoticeBoard, setqualificationNoticeBoard] = useState(null);
+  const [disabled, setdisabled] = useState(false);
+
+
 
 function ListQualification(){
-let schools=Qualifications.education.map((school) => { return <AllSchools school={school} />});
+let schools=Qualifications.education.map((school) => { return <AllSchools school={school} Qualifications={Qualifications} configureQualification={configureQualification} ListQualification={ListQualification} seteducationPlaces={(place)=>seteducationPlaces(place)} manageDisability={(bool)=>{}} handleDisabling={handleDisabling}/>});
 setqualificationNoticeBoard(schools )
 
 
 }
 
+
+
+
+function handleDisabling(){
+
+  Qualifications.education.length>1?setdisabled(true):setdisabled(false);
+  handleCleareducation()
+}
+function handleCleareducation(){
+
+    let clear=Qualifications.education.length === 0
+      ? seteducationPlaces([learningPlace])
+      :null ;
+}
+
+function clearForm() {
+  document.querySelector("#educationForm").reset();
+
+}
 
 
   return (
@@ -224,19 +246,23 @@ setqualificationNoticeBoard(schools )
           <h1 className="dark:text-blueGray-100 text-textGrey text-xl ">
             Education
           </h1>
-          <button
+          <button type="reset"
             title="Add Experience"
             className="bg-gray-light rounded-full w-7 flex justify-center items-center"
+        disabled={disabled}
 
-            onClick={()=>{seteducationPlaces([learningPlace,learningPlaceTwo])
+            onClick={()=>{seteducationPlaces([...educationPlaces,learningPlaceTwo])
               configureQualification({
               ...Qualifications,
               education: educationPlaces,
 
             });
             ListQualification();
+            clearForm()
+            handleDisabling();
 
-            console.log(Qualifications)}}
+
+}}
           >
             <Add />
           </button>
@@ -247,7 +273,7 @@ setqualificationNoticeBoard(schools )
         </p>
         {qualificationNoticeBoard}
       </div>
-      <form action="" method="post" className="flex flex-col gap-4">
+      <form action="" method="post" className="flex flex-col gap-4" id="educationForm">
         <section className="flex justify-between">
           <div className="formElement">
             <label htmlFor="Name" className="dark:text-blueGray-300">
@@ -256,6 +282,7 @@ setqualificationNoticeBoard(schools )
             <input
               type="text"
               id="Name"
+
               placeholder="Mombera University"
               onChange={(e) => {
                 educationPlaces[educationPlaces.length-1].schoolName =
@@ -266,11 +293,12 @@ setqualificationNoticeBoard(schools )
                   ...Qualifications,
                   education: educationPlaces,
                 });
+
               }}
             />
           </div>
 
-          <div className="formElement">
+          <div className="formElement educationForm">
             <label htmlFor="email" className="dark:text-blueGray-300">
               Degree Major:
             </label>
@@ -278,6 +306,7 @@ setqualificationNoticeBoard(schools )
               type="text"
               id="email"
               placeholder="Computer Science"
+
               onChange={(e) => {
                 educationPlaces[educationPlaces.length-1].degreeMajor = e.target.value;
                 seteducationPlaces([...educationPlaces]);
@@ -442,12 +471,13 @@ const [stack, setstack] = useState(null);
   );
 }
 
-function AllSchools({school}){
+function AllSchools({school,index,ListQualification,configureQualification,Qualifications,manageDisability,seteducationPlaces,handleDisabling}){
+let personalQualification=Qualifications;
 
   return(
     <div className="flex dark:bg-gray-200 p-2 justify-between rounded-md">
       <h4 className="italic">{school.schoolName}</h4>
-      <button title="deleteSchool"> <DeleteIcon/> </button>
+      <button title="deleteSchool" onClick={()=>{personalQualification.education.splice(index,1);seteducationPlaces(personalQualification.education); configureQualification({...personalQualification});handleDisabling(); ListQualification();manageDisability(false)}}> <DeleteIcon/> </button>
     </div>
   )
 
@@ -459,7 +489,7 @@ function AllStacks({ name,index ,techList,settechList}) {
   return (
     <div className="flex dark:bg-gray-200 p-2 justify-between gap-2 rounded-md shadow-md">
       <h4 className="italic">{name}</h4>
-      <button title="deleteSchool" onClick={()=>{techStack.splice(index,1); console.log(techStack); settechList(techStack)}}>
+      <button title="deleteSchool" onClick={()=>{techStack.splice(index,1);  settechList(techStack);}}>
         <DeleteIcon />
       </button>
     </div>

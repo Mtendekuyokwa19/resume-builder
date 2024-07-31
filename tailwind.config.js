@@ -6,6 +6,7 @@ import colors from "tailwindcss/colors";
 export const content = ["./src/**/*.{js,jsx,ts,tsx}"];
 export const theme = {
   colors: {
+    black:'#121212',
     blue: "#1fb6ff",
     purple: "#7e5bef",
     pink: "#ff49db",
