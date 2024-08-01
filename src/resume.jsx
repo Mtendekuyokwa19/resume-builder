@@ -51,7 +51,7 @@ function Work({details}) {
   return (
     <div className="flex flex-col gap-1">
       <EducationTab details={details} />
-      <Experience />
+      <Experience details={details} />
     </div>
   );
 
@@ -133,7 +133,7 @@ function EducationTab({ details }) {
   );
 }
 
-function Experience() {
+function Experience({details}) {
   return (
     <section className="flex flex-col border-l-4 border-l-fontGray p-2">
       <section>
@@ -141,17 +141,16 @@ function Experience() {
       </section>
 
       <ul>
-        <li className="list-disc">
-          <h3 className="font-bold underline">Airbnb</h3>
-          <p className="italic">systems analyst</p>
-          <p className="font-mono">2014-2022</p>
-        </li>
-        <li className="list-disc">
-          <h3 className="font-bold underline">Agriculture club</h3>
-          <p className="italic">Gardener</p>
 
-          <p className="font-mono">2023-now</p>
-        </li>
+        {details.experience.map(job=>{return (
+          <li className="list-disc">
+            <h3 className="font-bold underline">{job.CompanyName}</h3>
+            <p className="italic">{job.Role}</p>
+            <p className="font-mono">{job.setYear()}</p>
+          </li>
+        );})}
+
+
       </ul>
     </section>
   );

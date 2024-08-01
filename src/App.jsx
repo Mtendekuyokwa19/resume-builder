@@ -111,6 +111,17 @@ export class Experience {
   end=new Date();
 
   setYear(){
-    this.year=this.start.getFullYear()+"-"+this.end.getFullYear();
+    this.year=this.start.getFullYear().toString()+"-"+this.end.getFullYear().toString();
+
+    return this.year;
+  }
+
+  setStartDate(date){
+
+    this.start=new Date(date)
+  }
+
+  setEndDate(date){
+    this.end=new Date(date)
   }
 }

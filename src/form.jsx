@@ -338,8 +338,8 @@ function clearForm() {
   );
 }
 
-function ExperienceForm({ configureQualification, Qualification }) {
-  let personalQualification=Qualification;
+function ExperienceForm({ configureQualification, Qualifications }) {
+  let personalQualification=Qualifications;
   let initialJob=new Experience("University of bronx","Software engineer","2012-2024");
 
   const [jobs, setjobs] = useState([initialJob]);
@@ -362,7 +362,7 @@ function clearForm() {
             onClick={() => {
               clearForm();
 
-              console.log(personalQualification)
+              console.log(personalQualification,Qualifications)
             }}
           >
             <Add />
@@ -388,10 +388,16 @@ function clearForm() {
               type="text"
               id="Name"
               placeholder="UX Designer"
-              onChange={(e) =>
-                (personalQualification.experience[
+              onChange={(e) =>{
+                  personalQualification.experience[
                   personalQualification.experience.length - 1
-                ].Role = e.target.value)
+                ].Role = e.target.value;
+
+                configureQualification({...personalQualification})
+              }
+
+
+
               }
             />
           </div>
@@ -404,10 +410,13 @@ function clearForm() {
               type="email"
               id="email"
               placeholder="Computer Science"
-              onChange={(e) =>
-                (personalQualification.experience[
+              onChange={(e) =>{personalQualification.experience[
                   personalQualification.experience.length - 1
-                ].CompanyName = e.target.value)
+                ].CompanyName = e.target.value;
+               configureQualification({ ...personalQualification });
+
+              }
+
               }
             />
           </div>
@@ -421,10 +430,15 @@ function clearForm() {
               type="date"
               id="Startdate"
               className="w-72"
-              onChange={(e) =>
-                (personalQualification.experience[
+              onChange={(e) =>{
+
+                personalQualification.experience[
                   personalQualification.experience.length - 1
-                ].start = e.target.value)
+                ].setStartDate(e.target.value);
+
+                 configureQualification({ ...personalQualification });
+              }
+
               }
             />
           </div>
@@ -436,10 +450,13 @@ function clearForm() {
               type="date"
               id="finishDate"
               className="w-72"
-              onChange={(e) =>
-                (personalQualification.experience[
-                  personalQualification.experience.length - 1
-                ].end = e.target.value)
+              onChange={(e) =>{
+                      personalQualification.experience[
+                        personalQualification.experience.length - 1
+                      ].setEndDate(e.target.value);
+              configureQualification({ ...personalQualification });
+              }
+
               }
             />
           </div>
@@ -452,10 +469,12 @@ function clearForm() {
           <textarea
             name="Desciption"
             id="Desciption"
-            onChange={(e) =>
-              (personalQualification.experience[
+            onChange={(e) =>{personalQualification.experience[
                 personalQualification.experience.length - 1
-              ].description = e.target.value)
+              ].description = e.target.value;
+               configureQualification({ ...personalQualification });
+            }
+
             }
           ></textarea>
         </section>
