@@ -146,7 +146,7 @@ function Experience({details}) {
           <li className="list-disc">
             <h3 className="font-bold underline">{job.CompanyName}</h3>
             <p className="italic">{job.Role}</p>
-            {/* <p classNamez="font-mono">{job.setYear()}</p> */}
+            <p classNamez="font-mono">{job.setYear()}</p>
           </li>
         );})}
 

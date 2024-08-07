@@ -179,7 +179,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
             >
               Job Title:
             </label>
-            <input type="text" id="JobTitle" placeholder="Product Designer" onChange={(e)=>configureQualification({...Qualifications,'JobTitle':e.target.value})} />
+            <input type="text" id="JobTitle" placeholder="Product Designer" onChange={(e)=>configureQualification({...Qualifications,'Jobtitle':e.target.value})} />
           </div>
         </section>
       </form>
