@@ -76,9 +76,14 @@ class PersonQualification {
   Jobtitle = "Product Manager";
   stack=["Node Js","Bython","Java"];
   education=[new Education(),new Education("Havard college","farmology")]
-  experience=[new Experience("Airbnb","Product Designer","2024-2034"),new Experience("Microsoft","systems analyst","2013-2024")]
+  experience=[new IExperience("Microsoft","systems analyst","2013-2024")]
 
-
+addjob(CompanyName,Role,date){
+let job = new IExperience(CompanyName, Role, date);
+job.start=new Date()
+job.end=new Date()
+  this.experience.push(job)
+}
 
 }
 
@@ -95,7 +100,7 @@ export class Education{
 
 }
 
-export class Experience {
+export class IExperience {
   constructor(
     CompanyName = "Mombera university",
     Role = "computer science",
@@ -114,6 +119,10 @@ export class Experience {
     this.year=this.start.getFullYear().toString()+"-"+this.end.getFullYear().toString();
 
     return this.year;
+  }
+
+  setRole(Role){
+    this.Role=Role
   }
 
   setStartDate(date){

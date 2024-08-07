@@ -3,6 +3,7 @@ import { Add, DeleteIcon, Education, Experience, PersonalDataIcon, Skills } from
 import { v4 as uuid } from 'uuid';
 import { useState } from "react";
 import { Education as School } from "./App";
+import { IExperience } from "./App";
 export function FormTabs({configureQualification,Qualifications}) {
 
   return(
@@ -340,11 +341,24 @@ function clearForm() {
 
 function ExperienceForm({ configureQualification, Qualifications }) {
   let personalQualification=Qualifications;
-  let initialJob=new Experience("University of bronx","Software engineer","2012-2024");
-
+  let initialJob=new IExperience("University of bronx","Software engineer","2012-2024");
+const [Joblist, setJoblist] = useState(null);
+  console.log(initialJob.setRole("twice"), initialJob);
   const [jobs, setjobs] = useState([initialJob]);
+function newJob() {
+  let Jobs=Qualifications.experience.map(job=>{return <AllJobs name={job.CompanyName} index={Qualifications.experience.indexOf(job)} techList={Qualifications} settechList={configureQualification} setTabs={()=>{newJob()}} Tabs={Joblist} jobs={jobs} setJobs={(Jobs)=>setjobs(Jobs)} unEmployedstate={unEmployedstate} />})
+  setJoblist(Jobs);
+
+}
+
+
 function clearForm() {
   document.querySelector("#experienceForm").reset()
+
+}
+
+function unEmployedstate() {
+  setjobs([initialJob])
 
 }
 
@@ -360,9 +374,13 @@ function clearForm() {
             title="Add Experience"
             className="bg-gray-light rounded-full w-7 flex justify-center items-center"
             onClick={() => {
-              clearForm();
 
-              console.log(personalQualification,Qualifications)
+                 clearForm();
+            setjobs([...jobs,new IExperience("Company", "Role", "2024-4322")])
+              configureQualification({...personalQualification,'experience':jobs})
+              console.log(personalQualification)
+              newJob();
+
             }}
           >
             <Add />
@@ -373,6 +391,7 @@ function clearForm() {
           Please fill in your Job history
         </p>
       </section>
+     {Joblist}
       <form
         action=""
         method="post"
@@ -389,11 +408,11 @@ function clearForm() {
               id="Name"
               placeholder="UX Designer"
               onChange={(e) =>{
-                  personalQualification.experience[
-                  personalQualification.experience.length - 1
-                ].Role = e.target.value;
+                  jobs[
+                  jobs.length - 1
+                ].setRole(e.target.value);
 
-                configureQualification({...personalQualification})
+                configureQualification({...personalQualification,'experience':jobs})
               }
 
 
@@ -410,10 +429,13 @@ function clearForm() {
               type="email"
               id="email"
               placeholder="Computer Science"
-              onChange={(e) =>{personalQualification.experience[
-                  personalQualification.experience.length - 1
+              onChange={(e) =>{jobs[
+                  jobs.length - 1
                 ].CompanyName = e.target.value;
-               configureQualification({ ...personalQualification });
+               configureQualification({
+                 ...personalQualification,
+                 'experience': jobs,
+               });
 
               }
 
@@ -432,11 +454,14 @@ function clearForm() {
               className="w-72"
               onChange={(e) =>{
 
-                personalQualification.experience[
-                  personalQualification.experience.length - 1
+                jobs[
+                  jobs.length - 1
                 ].setStartDate(e.target.value);
 
-                 configureQualification({ ...personalQualification });
+                 configureQualification({
+                   ...personalQualification,
+                   'experience': jobs,
+                 });
               }
 
               }
@@ -451,10 +476,14 @@ function clearForm() {
               id="finishDate"
               className="w-72"
               onChange={(e) =>{
-                      personalQualification.experience[
-                        personalQualification.experience.length - 1
+                      jobs[
+                        jobs
+                        .length - 1
                       ].setEndDate(e.target.value);
-              configureQualification({ ...personalQualification });
+              configureQualification({
+                ...personalQualification,
+                'experience': jobs,
+              });
               }
 
               }
@@ -469,10 +498,13 @@ function clearForm() {
           <textarea
             name="Desciption"
             id="Desciption"
-            onChange={(e) =>{personalQualification.experience[
-                personalQualification.experience.length - 1
+            onChange={(e) =>{jobs[
+                jobs.length - 1
               ].description = e.target.value;
-               configureQualification({ ...personalQualification });
+               configureQualification({
+                 ...personalQualification,
+                ' experience': jobs,
+               });
             }
 
             }
@@ -573,6 +605,31 @@ function AllStacks({ name,index ,techList,settechList}) {
     <div className="flex dark:bg-gray-200 p-2 justify-between gap-2 rounded-md shadow-md">
       <h4 className="italic">{name}</h4>
       <button title="deleteSchool" onClick={()=>{techStack.splice(index,1);  settechList(techStack);}}>
+        <DeleteIcon />
+      </button>
+    </div>
+  );
+}
+
+function AllJobs({ name, index, techList, settechList,setTabs,jobs,setJobs,unEmployedstate }) {
+let Jobs=techList.experience;
+
+
+  return (
+    <div className="flex dark:bg-gray-200 p-2 justify-between gap-2 rounded-md shadow-md">
+      <h4 className="italic">{name}</h4>
+      <button
+            onClick={()=>{
+              console.log(techList)
+              Jobs.splice(index,1);
+              settechList({...techList,'experience':Jobs});
+
+              setJobs(Jobs)
+
+               setTabs();
+               let allTasksremoval=Jobs.length===0?unEmployedstate():null;
+            }}
+      >
         <DeleteIcon />
       </button>
     </div>
