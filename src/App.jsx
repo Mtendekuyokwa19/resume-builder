@@ -2,7 +2,10 @@ import { FormTabs } from "./form"
 import { Resume } from "./resume"
 import { Github, Logo, Preview } from "./svg"
 import { Fragment } from "react";
+import { usePDF } from "react-to-pdf";
 import {useState} from "react"
+import generatePDF from "react-to-pdf";
+import { useRef } from "react";
 export default function App() {
   return (
  <Content/>
@@ -11,16 +14,19 @@ export default function App() {
 
 function Content() {
 
+const targetRef = useRef();
+
   return (
     <div className=" dark:bg-gray-950 content">
-      <Nav />
-      <WorkSpace />
+      <Nav targetRef={targetRef}  />
+      <WorkSpace targetRef={targetRef} />
     </div>
   );
 
 }
 
-function Nav() {
+function Nav({targetRef}) {
+
 
   return (
     <nav className="flex  dark:bg-bgBlack justify-around gap-20 p-3 items-center border-b-2 border-b-gray shadow-lg top-0 sticky">
@@ -33,6 +39,7 @@ function Nav() {
           <button
             title="Download"
             className="flex justify-center items-center gap-1 bg-buttonColor text-textResume p-2 rounded-md"
+            onClick={() => generatePDF(targetRef, { filename: "page.pdf" })}
           >
             <Preview />
             <p>Download</p>
@@ -43,14 +50,12 @@ function Nav() {
             <Github />
           </button>
         </li>
-
-
       </section>
     </nav>
   );
 }
 
-function WorkSpace() {
+function WorkSpace({targetRef}) {
   const [Qualifications, setQualifications] = useState(new PersonQualification());
 
   function configureQualification(Qualifications) {
@@ -59,9 +64,9 @@ function WorkSpace() {
   }
 
   return (
-    <section className="flex mt-2 gap-3 p-2">
+    <section className="flex flex-col sm:flex-col md:flex-col lg:flex-row mt-2 gap-3 p-2">
       <FormTabs Qualifications={Qualifications} configureQualification={configureQualification} />
-      <Resume details={Qualifications}/>
+      <Resume details={Qualifications} targetRef={targetRef}/>
     </section>
   );
 }

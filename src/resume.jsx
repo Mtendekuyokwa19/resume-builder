@@ -1,10 +1,10 @@
 import { CallIcon, Mail } from "./svg";
 import { v4 as uuidv4 } from 'uuid';
 
-export function Resume({details}) {
+export function Resume({details,targetRef}) {
 
     return(
-      <section className="w-1/2 flex flex-col bg-gray mt-2 bg-textResume">
+      <section className="w-1/2 flex flex-col bg-gray mt-2 p-4 bg-textResume resume" ref={targetRef}>
       <Header details={details} />
       <SelfDescription details={details}/>
       <DetailSpace details={details}/>
@@ -15,9 +15,9 @@ export function Resume({details}) {
 function Header({details}) {
 
   return (
-    <section className="bg-fontGray text-textResume flex justify-center items-center flex-col h-20">
-      <h1 className="text-2xl">{details.Fullname}</h1>
-      <p>{details.Jobtitle}</p>
+    <section className=" text-black flex justify-center items-center flex-col h-20">
+      <h1 className="text-2xl font-bold">{details.Fullname.toUpperCase()}</h1>
+      <p className="font-mono">{details.Jobtitle}</p>
     </section>
   );
 
@@ -25,8 +25,8 @@ function Header({details}) {
 function SelfDescription({details}) {
 
   return (
-    <section className="flex flex-col my-2 p-2">
-      <h1 className="text-xl text-textResume bg-fontGray px-3 ">
+    <section className="flex flex-col my-2 p-3">
+      <h1 className="text-xl text-black font-bold ">
         Personal Introduction
       </h1>
       <p className="text-justify">
@@ -71,9 +71,9 @@ function Contact({details}) {
 
   return (
     <section className="flex flex-col gap-1 basis-1">
-      <span className="border-b-2 border-x-resumeColor border-solid w-2/3">
-        <h1 className="text-xl text-fontGray">Contact</h1>
-      </span>
+
+        <h1 className="text-xl text-fontGray font-bold">Contact</h1>
+
 
       <div className="flex gap-1  items-center">
         <CallIcon />
@@ -99,9 +99,9 @@ for (let i = 0; i < details.stack.length; i++) {
 
   return (
     <section className="my-4 flex flex-col gap-2 items-stretch">
-      <span className="border-b-2 border-x-resumeColor border-solid w-2/3 ">
-        <h1 className="text-xl text-fontGray">Tools & Technologies</h1>
-      </span>
+
+        <h1 className="text-xl text-fontGray font-bold">Tools & Technologies</h1>
+
 
       <ul className="list-disc list-inside pl-5">
         {details.stack.map(language=>{ console.log(language,"er");return <li className="list-disc">{language}</li>})  }
@@ -112,32 +112,30 @@ for (let i = 0; i < details.stack.length; i++) {
 
 function EducationTab({ details }) {
   return (
-    <section className="flex flex-col border-l-4 border-l-fontGray p-2">
+    <section className="flex flex-col border-l-4 border-l-black p-2">
       <section>
-        <h1 className="text-xl text-textResume bg-fontGray px-3">Education</h1>
+        <h1 className="text-xl text-fontGray font-bold ">Education</h1>
       </section>
 
       <ul>
-
-{details.education.map((school)=>{
-
-
-     return(  <li className="list-disc">
-                  <h3 className="font-bold underline">
-                    {school.degreeMajor}
-                  </h3>
-                  <p className="italic">{school.schoolName}</p>
-                </li>); })}
-</ul>
+        {details.education.map((school) => {
+          return (
+            <li className="list-disc">
+              <h3 className="font-bold underline">{school.degreeMajor}</h3>
+              <p className="italic">{school.schoolName}</p>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
 
 function Experience({details}) {
   return (
-    <section className="flex flex-col border-l-4 border-l-fontGray p-2">
+    <section className="flex flex-col border-l-4 border-l-black p-2">
       <section>
-        <h1 className="text-xl text-textResume bg-fontGray px-3">Experience</h1>
+        <h1 className="text-xl text-fontGray font-bold">Experience</h1>
       </section>
 
       <ul>

@@ -7,7 +7,7 @@ import { IExperience } from "./App";
 export function FormTabs({configureQualification,Qualifications}) {
 
   return(
-    <div className="flex flex-col gap-3 w-1/2 h-2/3 rounded-lg shadow-md p-6 dark:bg-bgBlack">
+    <div className="flex flex-col gap-3 lg:w-1/2 h-2/3 sm:ma-w-full rounded-lg shadow-md lg:p-6 md:p-2 sm:p-3 dark:bg-bgBlack">
 
       <FormBody Qualifications={Qualifications} configureQualification={configureQualification}/>
 
@@ -131,60 +131,100 @@ function CarouselButtons({ moveLeft, moveRight, index }) {
 function PersonalDataForm({configureQualification,Qualifications}) {
 
   return (
-    <section className="flex flex-col gap-3 mx-8 ">
+    <section className="flex flex-col   mx-3 sm:mx-8 gap-1 sm:gap-3 md:gap-1 ">
       <div className="flex flex-col gap-1">
-        <h1 className="dark:text-blueGray-100 text-textGrey text-xl ">
+        <h1 className="dark:text-blueGray-100 text-textGrey text-xl lg:text-xl md:text-xs sm:text-sm ">
           Personal Data
         </h1>
-        <p className="text-textGrey dark:text-blueGray-400">
+        <p className="text-textGrey dark:text-blueGray-400 lg:text-base md:text-xs sm:text-sm">
           Please fill in your personal information
         </p>
       </div>
-      <form action="" method="post" className="flex flex-col gap-4">
-        <section className="flex justify-between">
-          <div className="formElement">
+      <form action="" method="post" className="flex flex-col gap-7">
+        <section className="flex justify-between flex-col sm:flex-col md:flex-col lg:flex-row sm:gap-4 md:gap-4">
+          <div className="formElement lg:text-base md:text-xs sm:text-sm">
             <label
               htmlFor="Name"
               className="text-fontGray dark:text-blueGray-300"
             >
               Fullname:
             </label>
-            <input type="text" id="Name" placeholder="Joseph Ubuntu" onChange={(e)=>configureQualification({...Qualifications,'Fullname':e.target.value})} />
+            <input
+              type="text"
+              id="Name"
+              placeholder="Joseph Ubuntu"
+              onChange={(e) =>
+                configureQualification({
+                  ...Qualifications,
+                  Fullname: e.target.value,
+                })
+              }
+            />
           </div>
 
-          <div className="formElement">
+          <div className="formElement lg:text-base md:text-xs sm:text-sm">
             <label
               htmlFor="email"
               className="text-fontGray dark:text-blueGray-300"
             >
               Email:
             </label>
-            <input type="email" id="email" placeholder="example@linux.org" onChange={(e)=>configureQualification({...Qualifications,'Email':e.target.value})} />
+            <input
+              type="email"
+              id="email"
+              placeholder="example@linux.org"
+              onChange={(e) =>
+                configureQualification({
+                  ...Qualifications,
+                  Email: e.target.value,
+                })
+              }
+            />
           </div>
         </section>
-        <section className="flex justify-between">
-          <div className="formElement">
+        <section className="flex justify-between flex-col sm:flex-col md:flex-col lg:flex-row sm:gap-4 md:gap-4 sm:text-sm md:text-sm">
+          <div className="formElement lg:text-base md:text-xs sm:text-sm">
             <label
               htmlFor="PhoneNumber"
               className="text-fontGray dark:text-blueGray-300"
             >
               Phone Number:
             </label>
-            <input type="tel" id="PhoneNumber" placeholder="+2654567891011" onChange={(e)=>configureQualification({...Qualifications,'Phonenumber':e.target.value})} />
+            <input
+              type="tel"
+              id="PhoneNumber"
+              placeholder="+2654567891011"
+              onChange={(e) =>
+                configureQualification({
+                  ...Qualifications,
+                  Phonenumber: e.target.value,
+                })
+              }
+            />
           </div>
-          <div className="formElement">
+          <div className="formElement lg:text-base md:text-xs sm:text-sm">
             <label
               htmlFor="JobTitle"
               className="text-fontGray dark:text-blueGray-300"
             >
               Job Title:
             </label>
-            <input type="text" id="JobTitle" placeholder="Product Designer" onChange={(e)=>configureQualification({...Qualifications,'Jobtitle':e.target.value})} />
+            <input
+              type="text"
+              id="JobTitle"
+              placeholder="Product Designer"
+              onChange={(e) =>
+                configureQualification({
+                  ...Qualifications,
+                  Jobtitle: e.target.value,
+                })
+              }
+            />
           </div>
         </section>
       </form>
 
-      <section className="flex flex-col">
+      <section className="flex flex-col lg:text-base md:text-xs sm:text-sm">
         <label htmlFor="bio" className="text-fontGray dark:text-blueGray-300">
           Bio:
         </label>
@@ -194,8 +234,9 @@ function PersonalDataForm({configureQualification,Qualifications}) {
           id="bio"
           className="Bio"
           placeholder="I love to code on weekends and help my little brother work on his arduino. "
-
-          onChange={(e)=>configureQualification({...Qualifications,'Bio':e.target.value})}
+          onChange={(e) =>
+            configureQualification({ ...Qualifications, Bio: e.target.value })
+          }
         ></textarea>
       </section>
     </section>
