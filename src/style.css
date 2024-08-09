@@ -16,6 +16,7 @@ li{
 
 }
 
+
 .Bio{
 outline: solid;
   outline-color: #d3dce6;
@@ -90,4 +91,11 @@ button:disabled{
   background-color: transparent;
   color:white;
   border: 2px solid #d3dce6;
+}
+
+.topBar{
+  /* backdrop-filter: ; */
+  backdrop-filter: blur(19px);
+  backdrop-filter: blur(20000px);
+
 }

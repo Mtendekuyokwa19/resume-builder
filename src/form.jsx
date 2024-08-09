@@ -7,7 +7,7 @@ import { IExperience } from "./App";
 export function FormTabs({configureQualification,Qualifications}) {
 
   return(
-    <div className="flex flex-col gap-3 lg:w-1/2 h-2/3 sm:ma-w-full rounded-lg shadow-md lg:p-6 md:p-2 sm:p-3 dark:bg-bgBlack">
+    <div className="flex flex-col gap-3 sm:w-1/2 md:w-full   rounded-lg shadow-md lg:p-6 md:p-2 sm:p-3 dark:bg-bgBlack">
 
       <FormBody Qualifications={Qualifications} configureQualification={configureQualification}/>
 
@@ -103,7 +103,7 @@ function Button({children,setIndex,index,color}) {
 function Line(){
 
   return(
-    <div className="w-16 h-2 bg-textResume rounded-lg">
+    <div className="w-16 h-2 bg-transparent sm:bg-textResume rounded-lg">
 
     </div>
   )
@@ -131,18 +131,22 @@ function CarouselButtons({ moveLeft, moveRight, index }) {
 function PersonalDataForm({configureQualification,Qualifications}) {
 
   return (
-    <section className="flex flex-col   mx-3 sm:mx-8 gap-1 sm:gap-3 md:gap-1 ">
+    <section className="flex flex-col   mx-3 sm:mx-8 gap-7 sm:gap-3 md:gap-1 ">
       <div className="flex flex-col gap-1">
-        <h1 className="dark:text-blueGray-100 text-textGrey text-xl lg:text-xl md:text-xs sm:text-sm ">
+        <h1 className="dark:text-blueGray-100 text-textGrey text-sm   sm:text-xl ">
           Personal Data
         </h1>
         <p className="text-textGrey dark:text-blueGray-400 lg:text-base md:text-xs sm:text-sm">
           Please fill in your personal information
         </p>
       </div>
-      <form action="" method="post" className="flex flex-col gap-7">
-        <section className="flex justify-between flex-col sm:flex-col md:flex-col lg:flex-row sm:gap-4 md:gap-4">
-          <div className="formElement lg:text-base md:text-xs sm:text-sm">
+      <form
+        action=""
+        method="post"
+        className="flex flex-col sm:flex-col md:flex-col sm:justify-between gap-7"
+      >
+        <section className="flex justify-between flex-col gap-5 sm:flex-col md:flex-col lg:flex-row sm:gap-4 md:gap-4">
+          <div className="formElement">
             <label
               htmlFor="Name"
               className="text-fontGray dark:text-blueGray-300"
@@ -153,6 +157,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
               type="text"
               id="Name"
               placeholder="Joseph Ubuntu"
+              value={Qualifications.Fullname}
               onChange={(e) =>
                 configureQualification({
                   ...Qualifications,
@@ -162,7 +167,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
             />
           </div>
 
-          <div className="formElement lg:text-base md:text-xs sm:text-sm">
+          <div className="formElement ">
             <label
               htmlFor="email"
               className="text-fontGray dark:text-blueGray-300"
@@ -173,6 +178,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
               type="email"
               id="email"
               placeholder="example@linux.org"
+              value={Qualifications.Email}
               onChange={(e) =>
                 configureQualification({
                   ...Qualifications,
@@ -182,11 +188,11 @@ function PersonalDataForm({configureQualification,Qualifications}) {
             />
           </div>
         </section>
-        <section className="flex justify-between flex-col sm:flex-col md:flex-col lg:flex-row sm:gap-4 md:gap-4 sm:text-sm md:text-sm">
-          <div className="formElement lg:text-base md:text-xs sm:text-sm">
+        <section className="flex justify-between    flex-col sm:flex-col md:flex-col  lg:flex-row gap-7 sm:gap-4 sm:text-sm md:text-sm">
+          <div className="formElement">
             <label
               htmlFor="PhoneNumber"
-              className="text-fontGray dark:text-blueGray-300"
+              className="text-fontGray dark:text-blueGray-300 "
             >
               Phone Number:
             </label>
@@ -194,6 +200,8 @@ function PersonalDataForm({configureQualification,Qualifications}) {
               type="tel"
               id="PhoneNumber"
               placeholder="+2654567891011"
+              className="w-72 md:w-72 sm:w-72"
+              value={Qualifications.Phonenumber}
               onChange={(e) =>
                 configureQualification({
                   ...Qualifications,
@@ -202,7 +210,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
               }
             />
           </div>
-          <div className="formElement lg:text-base md:text-xs sm:text-sm">
+          <div className="formElement ">
             <label
               htmlFor="JobTitle"
               className="text-fontGray dark:text-blueGray-300"
@@ -213,6 +221,8 @@ function PersonalDataForm({configureQualification,Qualifications}) {
               type="text"
               id="JobTitle"
               placeholder="Product Designer"
+              className="w-72 sm:w-72"
+              value={Qualifications.Jobtitle}
               onChange={(e) =>
                 configureQualification({
                   ...Qualifications,
@@ -224,7 +234,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
         </section>
       </form>
 
-      <section className="flex flex-col lg:text-base md:text-xs sm:text-sm">
+      <section className="flex flex-col">
         <label htmlFor="bio" className="text-fontGray dark:text-blueGray-300">
           Bio:
         </label>
@@ -234,6 +244,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
           id="bio"
           className="Bio"
           placeholder="I love to code on weekends and help my little brother work on his arduino. "
+          value={Qualifications.Bio}
           onChange={(e) =>
             configureQualification({ ...Qualifications, Bio: e.target.value })
           }
@@ -288,23 +299,21 @@ function clearForm() {
           <h1 className="dark:text-blueGray-100 text-textGrey text-xl ">
             Education
           </h1>
-          <button type="reset"
+          <button
+            type="reset"
             title="Add Experience"
             className="bg-gray-light rounded-full w-7 flex justify-center items-center"
-        disabled={disabled}
-
-            onClick={()=>{seteducationPlaces([...educationPlaces,learningPlaceTwo])
+            disabled={disabled}
+            onClick={() => {
+              seteducationPlaces([...educationPlaces, learningPlaceTwo]);
               configureQualification({
-              ...Qualifications,
-              education: educationPlaces,
-
-            });
-            ListQualification();
-            clearForm()
-            handleDisabling();
-
-
-}}
+                ...Qualifications,
+                education: educationPlaces,
+              });
+              ListQualification();
+              clearForm();
+              handleDisabling();
+            }}
           >
             <Add />
           </button>
@@ -315,8 +324,13 @@ function clearForm() {
         </p>
         {qualificationNoticeBoard}
       </div>
-      <form action="" method="post" className="flex flex-col gap-4" id="educationForm">
-        <section className="flex justify-between">
+      <form
+        action=""
+        method="post"
+        className="flex flex-col gap-4"
+        id="educationForm"
+      >
+        <section className="flex justify-between flex-col sm:flex-col gap-6 sm:gap-0">
           <div className="formElement">
             <label htmlFor="Name" className="dark:text-blueGray-300">
               School Name:
@@ -324,10 +338,13 @@ function clearForm() {
             <input
               type="text"
               id="Name"
-
+              value={
+                Qualifications.education[Qualifications.education.length - 1]
+                  .schoolName
+              }
               placeholder="Mombera University"
               onChange={(e) => {
-                educationPlaces[educationPlaces.length-1].schoolName =
+                educationPlaces[educationPlaces.length - 1].schoolName =
                   e.target.value;
                 seteducationPlaces([...educationPlaces]);
                 console.log(educationPlaces);
@@ -335,7 +352,6 @@ function clearForm() {
                   ...Qualifications,
                   education: educationPlaces,
                 });
-
               }}
             />
           </div>
@@ -348,9 +364,13 @@ function clearForm() {
               type="text"
               id="email"
               placeholder="Computer Science"
-
+              value={
+                Qualifications.education[Qualifications.education.length - 1]
+                  .degreeMajor
+              }
               onChange={(e) => {
-                educationPlaces[educationPlaces.length-1].degreeMajor = e.target.value;
+                educationPlaces[educationPlaces.length - 1].degreeMajor =
+                  e.target.value;
                 seteducationPlaces([...educationPlaces]);
                 console.log(educationPlaces);
                 configureQualification({
@@ -361,18 +381,18 @@ function clearForm() {
             />
           </div>
         </section>
-        <section className="flex justify-between">
+        <section className="flex justify-between flex-wrap md:gap-2 flex-col sm:flex-col md:flex-row gap-6 sm:gap-0">
           <div className="formElement">
             <label htmlFor="Startdate" className="dark:text-blueGray-300">
               Start Date:
             </label>
-            <input type="date" id="Startdate" className="w-72" />
+            <input type="date" id="Startdate" className="sm:w-72 md:w-72" />
           </div>
-          <div className="formElement">
+          <div className="formElement ">
             <label htmlFor="finishDate" className="dark:text-blueGray-300">
               Finish Date:
             </label>
-            <input type="date" id="finishDate" className="w-72" />
+            <input type="date" id="finishDate" className="sm:w-72 md:w-72" />
           </div>
         </section>
       </form>
@@ -385,7 +405,7 @@ function ExperienceForm({ configureQualification, Qualifications }) {
   let initialJob=new IExperience("University of bronx","Software engineer","2012-2024");
 const [Joblist, setJoblist] = useState(null);
   console.log(initialJob.setRole("twice"), initialJob);
-  const [jobs, setjobs] = useState([initialJob]);
+  const [jobs, setjobs] = useState([...Qualifications.experience]);
 function newJob() {
   let Jobs=Qualifications.experience.map(job=>{return <AllJobs name={job.CompanyName} index={Qualifications.experience.indexOf(job)} techList={Qualifications} settechList={configureQualification} setTabs={()=>{newJob()}} Tabs={Joblist} jobs={jobs} setJobs={(Jobs)=>setjobs(Jobs)} unEmployedstate={unEmployedstate} />})
   setJoblist(Jobs);
@@ -436,10 +456,10 @@ function unEmployedstate() {
       <form
         action=""
         method="post"
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-7 sm:gap-4"
         id="experienceForm"
       >
-        <section className="flex justify-between">
+        <section className="flex justify-between flex-col flex-wrap sm:flex-row gap-7 sm:gap-0">
           <div className="formElement">
             <label htmlFor="Name" className="dark:text-blueGray-300">
               Job Title:
@@ -448,6 +468,7 @@ function unEmployedstate() {
               type="text"
               id="Name"
               placeholder="UX Designer"
+              className="w-11/12 sm:w-full"
               onChange={(e) =>{
                   jobs[
                   jobs.length - 1
@@ -467,6 +488,7 @@ function unEmployedstate() {
               Company Name:
             </label>
             <input
+            className="w-11/12 sm:w-full"
               type="email"
               id="email"
               placeholder="Computer Science"
@@ -484,7 +506,7 @@ function unEmployedstate() {
             />
           </div>
         </section>
-        <section className="flex justify-between">
+        <section className="flex justify-between flex-col flex-wrap sm:flex-row gap-7 sm:gap-0">
           <div className="formElement">
             <label htmlFor="Startdate" className="dark:text-blueGray-300">
               Start Date:
@@ -492,7 +514,7 @@ function unEmployedstate() {
             <input
               type="date"
               id="Startdate"
-              className="w-72"
+              className="sm:w-72"
               onChange={(e) =>{
 
                 jobs[
@@ -515,7 +537,7 @@ function unEmployedstate() {
             <input
               type="date"
               id="finishDate"
-              className="w-72"
+              className="sm:w-72"
               onChange={(e) =>{
                       jobs[
                         jobs
@@ -549,7 +571,7 @@ function unEmployedstate() {
             }
 
             }
-          ></textarea>
+          >{Qualifications.experience[Qualifications.experience.length-1].description}</textarea>
         </section>
       </form>
     </section>
@@ -581,7 +603,7 @@ const [stack, setstack] = useState(null);
 
 
   return (
-    <section className="flex flex-col gap-3 mx-8 ">
+    <section className="flex flex-col gap-3 mx-8  ">
       <section className="flex flex-col gap-1">
         <div className="flex justify-between">
           <h1 className="dark:text-blueGray-100 text-textGrey text-xl ">
@@ -592,11 +614,11 @@ const [stack, setstack] = useState(null);
         <p className="text-textGrey dark:text-blueGray-400">
           Please Add a technology you are familiar with
         </p>
-        <div className="flex justify-evenly">{tools}</div>
+        <div className="flex justify-evenly overflow-x-scroll gap-2 sm:overflow-x-hidden">{tools}</div>
       </section>
       <form action="" method="" className="flex flex-col gap-4">
         <section className="flex justify-between">
-          <div className="formElement">
+          <div className="formElement skillsForm flex flex-col w-56  h-32 sm:h-32">
             <label htmlFor="Name" className="dark:text-blueGray-300">
               Technology:
             </label>
@@ -604,6 +626,8 @@ const [stack, setstack] = useState(null);
               type="text"
               id="Name"
               placeholder="NodeJS"
+              className="mb-2 sm:mb-0"
+
               onChange={(e) => {
                 setstack(e.target.value);
               }}
@@ -611,7 +635,7 @@ const [stack, setstack] = useState(null);
 
             <button
               title="Add Skills"
-              className="bg-gray-light rounded-md my-6 p-3 flex justify-center gap-1 items-center submitSkill"
+              className="bg-gray-light rounded-md  sm:my-6 flex justify-center gap-1 items-center w-40 p-3 mt"
               disabled={disabled}
               onClick={(e) => {
                 e.preventDefault();
@@ -643,7 +667,7 @@ function AllStacks({ name,index ,techList,settechList}) {
   let techStack=techList;
 
   return (
-    <div className="flex dark:bg-gray-200 p-2 justify-between gap-2 rounded-md shadow-md">
+    <div className="flex dark:bg-gray-200 p-2 justify-between gap-2 rounded-md shadow-md h-10">
       <h4 className="italic">{name}</h4>
       <button title="deleteSchool" onClick={()=>{techStack.splice(index,1);  settechList(techStack);}}>
         <DeleteIcon />

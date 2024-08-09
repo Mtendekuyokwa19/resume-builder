@@ -29,20 +29,20 @@ function Nav({targetRef}) {
 
 
   return (
-    <nav className="flex  dark:bg-bgBlack justify-around gap-20 p-3 items-center border-b-2 border-b-gray shadow-lg top-0 sticky">
-      <h1 className="text-2xl font-bold text-black dark:text-white flex flex-row gap-1">
+    <nav className="flex  topBar dark:bg-bgBlack justify-around sm:gap-20 p-3 items-center border-b-2 border-b-gray shadow-lg top-0 sticky">
+      <h1 className="sm:text-2xl text-base   justify-center items-center font-bold text-black dark:text-white flex flex-row gap-1">
         <p>Resumeify</p> <Logo />
       </h1>
 
-      <section className="flex gap-9 justify-center items-center">
+      <section className="flex sm:gap-9 gap-2 justify-center items-center">
         <li>
           <button
             title="Download"
-            className="flex justify-center items-center gap-1 bg-buttonColor text-textResume p-2 rounded-md"
+            className="flex justify-center items-center gap-1 bg-buttonColor text-textResume p-2 rounded-lg sm:rounded-md"
             onClick={() => generatePDF(targetRef, { filename: "page.pdf" })}
           >
             <Preview />
-            <p>Download</p>
+            <p className="text-xs sm:text-base">Download</p>
           </button>
         </li>
         <li>
