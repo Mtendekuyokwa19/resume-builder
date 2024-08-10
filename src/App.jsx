@@ -80,7 +80,7 @@ class PersonQualification {
   Email = "jack@linux.org";
   Jobtitle = "Product Manager";
   stack=["Node Js","Bython","Java"];
-  education=[new Education(),new Education("Havard college","farmology")]
+  education=[new Education("Havard college","farmology")]
   experience=[new IExperience("Microsoft","systems analyst","2013-2024")]
 
 addjob(CompanyName,Role,date){
@@ -96,8 +96,8 @@ export class Education{
 
 
 
-  constructor(  schoolName="Mombera university",
-  degreeMajor="computer science"){
+  constructor(  schoolName="new school",
+  degreeMajor="new major"){
     this.schoolName=schoolName;
     this.degreeMajor=degreeMajor
 

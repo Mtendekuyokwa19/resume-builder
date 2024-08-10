@@ -258,25 +258,49 @@ function PersonalDataForm({configureQualification,Qualifications}) {
 function EducationForm({ configureQualification, Qualifications }) {
   let learningPlace = new School();
   let learningPlaceTwo = new School();
-  const [educationPlaces, seteducationPlaces] = useState([learningPlace]);
-  const [qualificationNoticeBoard, setqualificationNoticeBoard] = useState(null);
+  const [educationPlaces, seteducationPlaces] = useState([...Qualifications.education]);
+  const [qualificationNoticeBoard, setqualificationNoticeBoard] = useState(
+    Qualifications.education.length > 1
+      ? Qualifications.education.map((school) => {
+          return (
+            <AllSchools
+              school={school}
+              index={educationPlaces.indexOf(school)}
+              Qualifications={Qualifications}
+              configureQualification={configureQualification}
+              ListQualification={ListQualification}
+              seteducationPlaces={(place) => seteducationPlaces(place)}
+              manageDisability={() => {
+                clearSchools();
+              }}
+              handleDisabling={handleDisabling}
+            />
+          );
+        })
+      : null
+  );
   const [disabled, setdisabled] = useState(false);
 
 
 
 function ListQualification(){
-let schools=Qualifications.education.map((school) => { return <AllSchools school={school} Qualifications={Qualifications} configureQualification={configureQualification} ListQualification={ListQualification} seteducationPlaces={(place)=>seteducationPlaces(place)} manageDisability={(bool)=>{}} handleDisabling={handleDisabling}/>});
+let schools=Qualifications.education.map((school) => { return <AllSchools school={school} Qualifications={Qualifications} configureQualification={configureQualification} ListQualification={ListQualification} seteducationPlaces={(place)=>seteducationPlaces(place)} manageDisability={()=>{clearSchools()}} handleDisabling={handleDisabling}/>});
 setqualificationNoticeBoard(schools )
+
+return schools
+}
+
+
+function clearSchools() {
+ return educationPlaces.length===0? seteducationPlaces([learningPlace]):null;
 
 
 }
 
 
-
-
 function handleDisabling(){
 
-  Qualifications.education.length>1?setdisabled(true):setdisabled(false);
+  Qualifications.education.length>8?setdisabled(true):setdisabled(false);
   handleCleareducation()
 }
 function handleCleareducation(){
@@ -290,6 +314,7 @@ function clearForm() {
   document.querySelector("#educationForm").reset();
 
 }
+
 
 
   return (
@@ -310,6 +335,8 @@ function clearForm() {
                 ...Qualifications,
                 education: educationPlaces,
               });
+
+
               ListQualification();
               clearForm();
               handleDisabling();
@@ -339,8 +366,9 @@ function clearForm() {
               type="text"
               id="Name"
               value={
-                Qualifications.education[Qualifications.education.length - 1]
-                  .schoolName
+
+                Qualifications.education.length>1?Qualifications.education[Qualifications.education.length - 1]
+                  .schoolName:educationPlaces[educationPlaces.length-1].schoolName
               }
               placeholder="Mombera University"
               onChange={(e) => {
@@ -365,8 +393,8 @@ function clearForm() {
               id="email"
               placeholder="Computer Science"
               value={
-                Qualifications.education[Qualifications.education.length - 1]
-                  .degreeMajor
+                Qualifications.education.length>1?Qualifications.education[Qualifications.education.length - 1]
+                  .degreeMajor:educationPlaces[educationPlaces.length-1].degreeMajor
               }
               onChange={(e) => {
                 educationPlaces[educationPlaces.length - 1].degreeMajor =
@@ -653,11 +681,24 @@ const [stack, setstack] = useState(null);
 
 function AllSchools({school,index,ListQualification,configureQualification,Qualifications,manageDisability,seteducationPlaces,handleDisabling}){
 let personalQualification=Qualifications;
+let newSchool=new School();
+
 
   return(
     <div className="flex dark:bg-gray-200 p-2 justify-between rounded-md">
       <h4 className="italic">{school.schoolName}</h4>
-      <button title="deleteSchool" onClick={()=>{personalQualification.education.splice(index,1);seteducationPlaces(personalQualification.education); configureQualification({...personalQualification});handleDisabling(); ListQualification();manageDisability(false)}}> <DeleteIcon/> </button>
+      <button title="deleteSchool" onClick={()=>{
+        console.log(index,Qualifications.education.indexOf(school),school);
+        personalQualification.education.splice(
+          Qualifications.education.indexOf(school),
+          1
+        );
+        seteducationPlaces(personalQualification.education);
+        configureQualification({...personalQualification});
+        seteducationPlaces([...personalQualification.education,newSchool])
+      handleDisabling();
+       ListQualification();
+       manageDisability()}}> <DeleteIcon/> </button>
     </div>
   )
 
