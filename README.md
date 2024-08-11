@@ -4,12 +4,16 @@ ResumeBuilder is a tool that takes user input from a form and generates a profes
 
 ![](./readmeImgs/Screenshot%20from%202024-08-11%2006-24-01.png)
 
+## Preview
+Click this link
+
 ## Features
 
 - **Form Input**: Users can fill out a form with their personal details, work experience, education, and skills.
 - **Resume Generation**: Converts form data into a well-structured resume in various formats (PDF, DOCX).
 
 - **Download and Share**: Download the generated resume or share it directly via email.
+
 
 ## Getting Started
 
@@ -39,7 +43,9 @@ ResumeBuilder is a tool that takes user input from a form and generates a profes
 1. Vanilla CSS
 1. Webpack
 1. Create React App
-
+1. JStopdf
+1. draw.io
+1. git and github
 ## Motivation
 1. Understanding `use state()`
 1. Mastering JSX
