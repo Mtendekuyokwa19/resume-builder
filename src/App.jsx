@@ -36,19 +36,26 @@ function Nav({targetRef}) {
 
       <section className="flex sm:gap-9 gap-2 justify-center items-center">
         <li>
-          <button
-            title="Download"
-            className="flex justify-center items-center gap-1 bg-buttonColor text-textResume p-2 rounded-lg sm:rounded-md"
-            onClick={() => generatePDF(targetRef, { filename: "page.pdf" })}
-          >
-            <Preview />
-            <p className="text-xs sm:text-base">Download</p>
-          </button>
+
+            <button
+              title="Download"
+              className="flex justify-center items-center gap-1 bg-buttonColor text-textResume p-2 rounded-lg sm:rounded-md"
+              onClick={() => generatePDF(targetRef, { filename: "page.pdf" })}
+            >
+              <Preview />
+              <p className="text-xs sm:text-base">Download</p>
+            </button>
+
         </li>
         <li>
+           <a
+            href="https://github.com/Mtendekuyokwa19
+          "
+          >
           <button title="Github" className="flex justify-center items-center">
             <Github />
           </button>
+             </a>
         </li>
       </section>
     </nav>
