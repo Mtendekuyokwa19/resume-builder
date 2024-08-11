@@ -257,7 +257,7 @@ function PersonalDataForm({configureQualification,Qualifications}) {
 
 function EducationForm({ configureQualification, Qualifications }) {
   let learningPlace = new School();
-  let learningPlaceTwo = new School();
+  let learningPlaceTwo = new School("","");
   const [educationPlaces, seteducationPlaces] = useState([...Qualifications.education]);
   const [qualificationNoticeBoard, setqualificationNoticeBoard] = useState(
     Qualifications.education.length > 1
@@ -340,6 +340,7 @@ function clearForm() {
               ListQualification();
               clearForm();
               handleDisabling();
+
             }}
           >
             <Add />
@@ -430,7 +431,7 @@ function clearForm() {
 
 function ExperienceForm({ configureQualification, Qualifications }) {
   let personalQualification=Qualifications;
-  let initialJob=new IExperience("University of bronx","Software engineer","2012-2024");
+  let initialJob=new IExperience("role","CompanyName","2012-2024");
 const [Joblist, setJoblist] = useState(null);
   console.log(initialJob.setRole("twice"), initialJob);
   const [jobs, setjobs] = useState([...Qualifications.experience]);
@@ -447,7 +448,10 @@ function clearForm() {
 }
 
 function unEmployedstate() {
-  setjobs([initialJob])
+
+ if(jobs.length===0){
+  setjobs([initialJob]);
+  configureQualification({...Qualifications,'experience':jobs})}
 
 }
 
@@ -599,7 +603,7 @@ function unEmployedstate() {
             }
 
             }
-          >{Qualifications.experience[Qualifications.experience.length-1].description}</textarea>
+          >{Qualifications.experience.length>1?Qualifications.experience[Qualifications.experience.length-1].description:""}</textarea>
         </section>
       </form>
     </section>
@@ -733,7 +737,9 @@ let Jobs=techList.experience;
               setJobs(Jobs)
 
                setTabs();
-               let allTasksremoval=Jobs.length===0?unEmployedstate():null;
+               console.log(Jobs)
+              unEmployedstate();
+              console.log(Jobs);
             }}
       >
         <DeleteIcon />
