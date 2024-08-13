@@ -5,7 +5,7 @@ ResumeBuilder is a tool that takes user input from a form and generates a profes
 ![](./readmeImgs/Screenshot%20from%202024-08-11%2006-24-01.png)
 
 ## Preview
-Click this link
+Click this ![](https://resumestacker.vercel.app/)
 
 ## Features
 
