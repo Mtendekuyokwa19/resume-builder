@@ -113,7 +113,7 @@ function CarouselButtons({ moveLeft, moveRight, index }) {
   return (
     <section className="flex justify-between m-8 ">
       <button
-        className="p-3 text-textResume w-24 rounded-md carouselBtnPrev"
+        className="p-3 text-black dark:text-textResume w-24 rounded-md carouselBtnPrev"
         onClick={() => moveLeft()}
       >
         Prev

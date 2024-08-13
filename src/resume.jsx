@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 export function Resume({details,targetRef}) {
 
     return(
-      <section className=" sm:w-1/2  md:w-full hidden sm:flex md:flex flex-col bg-gray mt-2 p-4 bg-textResume resume" ref={targetRef}>
+      <section className=" sm:w-1/2  md:w-full sm:flex md:flex flex-col bg-gray mt-2 p-4 bg-textResume resume" ref={targetRef}>
       <Header details={details} />
       <SelfDescription details={details}/>
       <DetailSpace details={details}/>
